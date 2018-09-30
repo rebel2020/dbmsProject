@@ -1,6 +1,7 @@
 package com.brijesh.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -19,8 +20,8 @@ public class CartdaoImpl implements Cartdao{
 	@Autowired
 	DataSource datasource;
 	public void addToCart(Cart cart) {
-		String sql="insert into CART set userId=?,itemId=?,itemName=?,quantity=?";
-		Object[] object= {cart.getUserId(),cart.getItemId(),cart.getItemName(),cart.getQuantity()};
+		String sql="insert into CART set userId=?,itemId=?,itemName=?,quantity=?,amount=?";
+		Object[] object= {cart.getUserId(),cart.getItemId(),cart.getItemName(),cart.getQuantity(),cart.getAmount()};
 		jdbcTemplate.update(sql,object);
 	}
 	
@@ -56,5 +57,19 @@ public class CartdaoImpl implements Cartdao{
 			}
 		}		
 		)!=null;
+	}
+
+	public int getPrice(String userId) {
+		
+		String sql="select * from CART  join ITEMS on CART.userId=\""+userId+"\" and CART.itemId=ITEMS.itemId";
+		List<Cart> list=(List<Cart>)jdbcTemplate.query(sql, new BeanPropertyRowMapper(Cart.class));
+		Iterator<Cart> itr=list.iterator();
+		int amount=0;
+		while(itr.hasNext())
+		{
+			Cart cart=itr.next();
+			amount+=cart.getAmount();
+		}
+		return amount;
 	}
 }

@@ -38,7 +38,7 @@ public class OrderController {
 	public String placeOrder(Model model,HttpServletRequest request)
 	{
 		String userId=request.getUserPrincipal().getName();
-		int orderId=orderdao.placeOrder(userId);
+		int orderId=orderdao.placeOrder(userId,cartdao.getPrice(userId));
 		List<Cart> list=cartdao.getCartItems(userId);
 		Iterator<Cart> itr=list.iterator();
 		while(itr.hasNext())
@@ -47,7 +47,9 @@ public class OrderController {
 //			System.out.println(cart.getItemName()+" "+cart.getQuantity());
 			orderdao.addToOrder(userId, orderId, cart.getItemId(),cart.getQuantity(),cart.getItemName());
 			int count=itemdao.getItem(cart.getItemId()).getQuantity();
-			itemdao.newCount(cart.getItemId(), count-cart.getQuantity());
+			count=count-cart.getQuantity();
+			if(count>=0)
+			itemdao.newCount(cart.getItemId(), count);
 			cartdao.removeFromCart(cart.getItemId(), userId);
 		}
 		return "redirect:/orderitems/"+orderId;

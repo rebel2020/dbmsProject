@@ -10,6 +10,7 @@ public class Order {
 		String address;
 		int empId;
 		int status;
+		int amount;
 		public int getOrderId() {
 			return orderId;
 		}
@@ -53,6 +54,12 @@ public class Order {
 		void setStatus(int status)
 		{
 			this.status=status;
+		}
+		public int getAmount() {
+			return amount;
+		}
+		public void setAmount(int amount) {
+			this.amount = amount;
 		}
 
 }

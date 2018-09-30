@@ -15,6 +15,12 @@
 <td><form:input path="name" type="text" required="required"/>
 <form:errors path="name"></form:errors>
 </td></tr>
+<tr><td>Price:</td><td>
+<form:input path="price" type="number" required="required"/>
+<form:errors path="price"/></td></tr>
+<tr><td>Weight(in gm):</td>
+<td><form:input path="weight" required="required"/>
+<form:errors path="weight"></form:errors></td></tr>
 <tr><td>Quantity:</td>
 <td><form:input path="quantity" type="int" default="10"/>
 <form:errors path="quantity"></form:errors></td></tr>

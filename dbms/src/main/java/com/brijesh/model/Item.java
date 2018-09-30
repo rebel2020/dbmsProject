@@ -10,7 +10,21 @@ public class Item {
 	private String name;
 //	@Range(min="1",max="5")
 	int quantity;
+	int price;
+	int weight;
 	String description;
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
 	public int getItemId() {
 		return itemId;
 	}

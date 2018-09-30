@@ -15,6 +15,8 @@
 <tr><td>
 Name:</td>
 <td>${item.name }</td></tr>
+<tr><td>Weight:</td><td>${item.weight } gm</td></td>
+<tr><td>Price:</td><td>${item.price }</td></tr>
 <tr><td>Description:</td>
 <td>${item.description }</td></tr>
 <tr><td>Hurry up...Only ${item.quantity } items remaining</td></tr>

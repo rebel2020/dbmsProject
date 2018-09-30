@@ -8,7 +8,10 @@
 		username</td><td>
 		<form:input path="username" type="text" /> </td><!-- bind to user.name-->
 		<td><form:errors path="username" /></td></tr>
-		
+		<tr><td>
+		Name</td><td>
+		<form:input path="name" type="text" /> </td><!-- bind to user.name-->
+		<td><form:errors path="name" /></td></tr>
 		<tr><td>
 		password</td><td>
 		<form:input path="password" type="password" /> </td><!-- bind to user.name-->
@@ -18,7 +21,14 @@
 		<td>
 		<form:input path="mpassword" type="password" /> </td><!-- bind to user.name-->
 		<td><form:errors path="mpassword" /></td></tr>
-		
+		<tr><td>
+		Contact No.</td><td>
+		<form:input path="contact" type="text" /> </td><!-- bind to user.name-->
+		<td><form:errors path="contact" /></td></tr>
+		<tr><td>
+		Address</td><td>
+		<form:input path="address" type="text" /> </td><!-- bind to user.name-->
+		<td><form:errors path="address" /></td></tr>
 		<tr>
 			<td></td>
 			<td><input type="submit" value="Submit" /></td>

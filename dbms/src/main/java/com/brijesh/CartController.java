@@ -38,6 +38,7 @@ public class CartController {
 //		System.out.println(Integer.parseInt(request.getParameter("quantity")));
 		cart.setQuantity(Integer.parseInt(request.getParameter("quantity")));
 		cart.setItemName(itemdao.getItem(itemId).getName());
+		cart.setAmount(cart.getQuantity()*itemdao.getItem(itemId).getPrice());
 		cartdao.addToCart(cart);
 		return "redirect:/cart";
 	}
@@ -58,5 +59,4 @@ public class CartController {
 		model.addAttribute("list",list);
 		return "Cart";
 	}
-//	@RequestMapping("isincart/{itemId}")
 }

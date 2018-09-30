@@ -40,6 +40,8 @@ public class ItemdaoImpl implements Itemdao{
 					item.setName(rs.getString("name"));
 					item.setDescription(rs.getString("description"));
 					item.setQuantity(rs.getInt("quantity"));
+					item.setPrice(rs.getInt("price"));
+					item.setWeight(rs.getInt("weight"));
 					return item;
 				}
 				return null;
@@ -56,8 +58,8 @@ public class ItemdaoImpl implements Itemdao{
 		
 	}
 	public void addItem(Item item) {
-		String sql="insert into ITEMS set name=?,description=?,quantity=?";
-		Object[] object= {item.getName(),item.getDescription(),item.getQuantity()};
+		String sql="insert into ITEMS set name=?,description=?,quantity=?,price=?,weight=?";
+		Object[] object= {item.getName(),item.getDescription(),item.getQuantity(),item.getPrice(),item.getWeight()};
 		jdbcTemplate.update(sql,object);
 	}
 	public List<Item> getAllItems() {

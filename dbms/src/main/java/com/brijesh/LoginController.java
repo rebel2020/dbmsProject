@@ -25,6 +25,14 @@ public class LoginController {
 	@Autowired
 	public Userdao userdao;
 	
+	@RequestMapping("profile")
+	public String profile(Model model,HttpServletRequest request)
+	{
+		User user =new User();
+		user=userdao.getUser(request.getUserPrincipal().getName());
+		model.addAttribute("user",user);
+		return "profile";
+	}
 	@RequestMapping(value = "/home")
 	public String welcome(Model model) {
 		model.addAttribute("name", "Home Page");
@@ -109,5 +117,4 @@ public class LoginController {
 		model.addAttribute("product","product");
 		return "product";
 	}
-	
 }

@@ -31,7 +31,7 @@ public class OrderdaoImpl implements Orderdao{
 		return jdbctemplate.query(sql, new BeanPropertyRowMapper(OrderItem.class));
 	}
 
-	public int placeOrder(String userId) {
+	public int placeOrder(String userId,int amount) {
 		String sql="select max(orderId) from ORDERS";
 		Order maxOrder=jdbctemplate.query(sql, new ResultSetExtractor<Order>() {
 			public Order extractData(ResultSet rs) throws SQLException
@@ -51,8 +51,8 @@ public class OrderdaoImpl implements Orderdao{
 			x=0;
 		else x=maxOrder.getOrderId();
 		x+=1;
-		String sql1="insert into ORDERS set orderId=?,userId=?";
-		Object[] object= {x,userId};
+		String sql1="insert into ORDERS set orderId=?,userId=?,amount=?";
+		Object[] object= {x,userId,amount};
 		jdbctemplate.update(sql1,object);
 		return x;
 	}

@@ -8,4 +8,5 @@ public interface Cartdao {
 	public void removeFromCart(int itemId,String userId);
 	public List<Cart> getCartItems(String userId);
 	public Boolean isIncart(int itemId,String userId);
+	public int getPrice(String userId);
 }

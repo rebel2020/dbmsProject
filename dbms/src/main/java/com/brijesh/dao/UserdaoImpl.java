@@ -24,8 +24,8 @@ public class UserdaoImpl implements Userdao{
 		this.jdbcTemplate = new JdbcTemplate(datasource);
 	}
 	public void saveOrUpdate(User user) {
-		 String sql = "INSERT INTO USERS(username, password) VALUES (?,?)";
-		 jdbcTemplate.update(sql,new Object[] {user.getUsername(),user.getPassword()});
+		 String sql = "INSERT INTO USERS(name,username, password,contact,address) VALUES (?,?,?,?,?)";
+		 jdbcTemplate.update(sql,new Object[] {user.getName(),user.getUsername(),user.getPassword(),user.getContact(),user.getAddress()});
 		 sql = "INSERT INTO USERS_ROLES(user,role) VALUES(?,?)";
 		 jdbcTemplate.update(sql,new Object[] {user.getUsername(),"ROLE_USER"});
 		 
@@ -42,13 +42,15 @@ public class UserdaoImpl implements Userdao{
 		public User extractData(ResultSet rs) throws SQLException,DataAccessException{
 			if(rs.next()) {
 				User user = new User();
+				user.setName(rs.getString("name"));
 				user.setUsername(rs.getString("username"));
 				user.setPassword(rs.getString("password"));
+				user.setAddress(rs.getString("address"));
+				user.setContact(rs.getString("contact"));
 				return user;
 			}
 			return null;
 		}
-		
 	});
 }
 }

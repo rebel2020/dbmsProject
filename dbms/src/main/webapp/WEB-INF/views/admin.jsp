@@ -6,11 +6,11 @@
 <body>
     <h1>Name(Admin) : ${name}</h1>
     <h1>Description : ${description}</h1>
-     <a href="dbms/admin/items">view all items</a><br>
-    <a href="dbms/admin/additem">Add Item</a><br>
-    <a href="dbms/admin/employees">All employees</a><br>
- 	<a href="dbms/admin/addemployee">Add employee</a><br>
- 	<a href="dbms/admin/orders">View orders</a>
+     <a href="/dbms/admin/items">view all items</a><br>
+    <a href="/dbms/admin/additem">Add Item</a><br>
+    <a href="/dbms/admin/employees">All employees</a><br>
+ 	<a href="/dbms/admin/addemployee">Add employee</a><br>
+ 	<a href="/dbms/admin/orders">View orders</a>
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <h2>
             Welcome : ${user} | <a

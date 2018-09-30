@@ -2,6 +2,8 @@
 <%@page import="org.springframework.ui.Model"%>
 <%@page import="com.brijesh.model.Item"%>
 <%@page import="java.util.List"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
+<% 
 List<Item> list=(List<Item>)  request.getAttribute("list");
 Iterator itr=list.iterator();
 while(itr.hasNext())
@@ -21,6 +23,7 @@ while(itr.hasNext())
 	
 }
 %>
+<c:if test=""></c:if>
 <a href="cart">Go to cart</a>
 </body>
 </html>
