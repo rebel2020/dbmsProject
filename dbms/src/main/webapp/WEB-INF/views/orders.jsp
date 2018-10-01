@@ -17,7 +17,7 @@
 <a href="orderitems/${item.orderId }">${item.orderId}</a>
 <div>Assigned employee ID:${item.empId }</div>
 </td></tr>
-<tr><td>Total amount:</td><td>${item.amount }</td></tr>
+<tr><td>Total amount:</td><td>${item.netAmount }</td></tr>
 </table></div>
 </c:forEach>
 </body>

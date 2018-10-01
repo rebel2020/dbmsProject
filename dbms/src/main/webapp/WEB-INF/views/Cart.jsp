@@ -13,6 +13,24 @@
 <c:if test="${empty list }">
 <h3>You don't have any item in your cart...</h3>
 </c:if>
+<c:if test="${not empty list }">
+<h4>Total Amount is:${price }</h4>
+<h4>Net price:${net_price }</h4>
+<form action="order/${net_price }">
+<input type="hidden" value="${offerId }" name="offerId">
+<input type="submit" value="Place order">
+
+</form>
+<form action="apply_offer">
+<select name="offerId" required="required">
+<option hidden="" value="0">none</option>
+<c:forEach items="${offers }" var="offer">
+<option value="${offer.offerId }">${offer.offerName }</option>
+</c:forEach>
+</select>
+<input type="submit" value="select offer">
+</form>
+</c:if>
 <c:forEach items="${list }" var="item">
 <div style="margin-left:10%;margin-right:10%;margin-top:3%;background-color:red;">
 <table>

@@ -72,4 +72,5 @@ public class ItemdaoImpl implements Itemdao{
 		String sql="update ITEMS set quantity=\""+count+"\" where itemId=\""+itemId+"\"";
 		jdbcTemplate.update(sql);
 	}
+	
 }

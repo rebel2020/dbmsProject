@@ -10,6 +10,9 @@
   		<intercept-url pattern="/welcome" access="permitAll" />   
 		<intercept-url pattern="/admin*" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/order**/**" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/cart**/**" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/employee**/**" access="hasRole('ROLE_EMPLOYEE')"/>
 		<form-login login-page="/login" authentication-success-handler-ref="customSuccessHandler" 
 			authentication-failure-url="/loginError" />
 		<logout logout-success-url="/logout" logout-url="/j_spring_security_logout" />

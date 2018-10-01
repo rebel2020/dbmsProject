@@ -2,6 +2,7 @@ package com.brijesh;
 
 import com.brijesh.model.Cart;
 import com.brijesh.model.Item;
+import com.brijesh.model.Offer;
 
 import java.util.List;
 import java.security.Principal;
@@ -18,10 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.brijesh.dao.Cartdao;
 import com.brijesh.dao.CartdaoImpl;
 import com.brijesh.dao.Itemdao;
+import com.brijesh.dao.Offerdao;
 @Controller
 public class CartController {
 	@Autowired
 	Cartdao cartdao;
+	@Autowired
+	Offerdao offerdao;
 	@Autowired
 	Itemdao itemdao;
 	@RequestMapping("addtocart/{itemId}")
@@ -38,7 +42,6 @@ public class CartController {
 //		System.out.println(Integer.parseInt(request.getParameter("quantity")));
 		cart.setQuantity(Integer.parseInt(request.getParameter("quantity")));
 		cart.setItemName(itemdao.getItem(itemId).getName());
-		cart.setAmount(cart.getQuantity()*itemdao.getItem(itemId).getPrice());
 		cartdao.addToCart(cart);
 		return "redirect:/cart";
 	}
@@ -57,6 +60,37 @@ public class CartController {
 		String userId=principal.getName();
 		List<Cart> list=cartdao.getCartItems(userId);
 		model.addAttribute("list",list);
+		model.addAttribute("price",cartdao.getPrice(userId));
+		model.addAttribute("net_price",cartdao.getPrice(userId));
+		List<Offer> offers=offerdao.getOffers();
+		model.addAttribute("offers",offers);
+		model.addAttribute("offerId", 0);
 		return "Cart";
+	}
+//	@RequestMapping("cart/{offerId}")
+	public String viewOfferCart(Model model,HttpServletRequest request,int offerId)
+	{
+		Principal principal=request.getUserPrincipal();
+		String userId=principal.getName();
+		List<Cart> list=cartdao.getCartItems(userId);
+		model.addAttribute("list",list);
+		int price=cartdao.getPrice(userId);
+		model.addAttribute("price",price);
+		model.addAttribute("net_price",price-offerdao.getOffer(offerId).getPercentageOff()*price/100);
+		List<Offer> offers=offerdao.getOffers();
+		model.addAttribute("offers",offers);
+		model.addAttribute("offerId", offerId);
+		System.out.println(offerId);
+		return "Cart";
+	}
+	@RequestMapping("apply_offer")
+	public String applyOffer(Model model,HttpServletRequest request)
+	{
+		int offerId=Integer.parseInt(request.getParameter("offerId"));
+		String userId=request.getUserPrincipal().getName();
+		model.addAttribute("offerId",offerId);
+		System.out.println(offerId);
+		return viewOfferCart(model,request,offerId); 
+//		return "redirect:/cart";
 	}
 }

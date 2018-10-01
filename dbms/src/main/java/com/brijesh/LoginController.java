@@ -1,5 +1,6 @@
 package com.brijesh;
 
+import java.util.*;
 import java.security.Principal;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -48,6 +50,13 @@ public class LoginController {
 		model.addAttribute("name", "Spring Security Custom Login Demo");
 		model.addAttribute("description", "Protected page !");
 		return "admin";
+	}
+	@RequestMapping("admin/users")
+	public String allUsers(Model model)
+	{
+		List<User> list=userdao.getAllUsers();
+		model.addAttribute("list",list);
+		return "admin/allUsers";
 	}
 	@RequestMapping("/user")
 	public String user(Model model, Principal principal) {
@@ -116,5 +125,11 @@ public class LoginController {
 		model.addAttribute("user",user);
 		model.addAttribute("product","product");
 		return "product";
+	}
+	@RequestMapping("sqitch_status/{userId}")
+	public String switchStatus(Model model,@PathVariable(value="userId") String userId)
+	{
+		userdao.switchStatus(userId);
+		return "redirect:/admin/users";
 	}
 }

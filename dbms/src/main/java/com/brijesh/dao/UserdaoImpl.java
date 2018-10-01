@@ -2,11 +2,14 @@ package com.brijesh.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
 import javax.sql.DataSource;
 import com.brijesh.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
@@ -50,7 +53,17 @@ public class UserdaoImpl implements Userdao{
 				return user;
 			}
 			return null;
-		}
-	});
-}
+			}
+		});
+	}
+	public void switchStatus(String userId) {
+		String sql="update USERS set enabled= not enabled";
+		jdbcTemplate.update(sql);
+		
+	}
+	public List<User> getAllUsers() {
+		String sql="get * from USERS";
+		List<User> list=jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class));
+		return list;
+	}
 }

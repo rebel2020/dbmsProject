@@ -12,4 +12,5 @@
     <bean id="feedbackdao" class="com.brijesh.dao.FeedbackdaoImpl"></bean>
     <bean id="cartdao" class="com.brijesh.dao.CartdaoImpl"></bean>
     <bean id="orderdao" class="com.brijesh.dao.OrderdaoImpl"></bean>
+    <bean id="offerbean" class="com.brijesh.dao.OfferdaoImpl"></bean>
 </beans>

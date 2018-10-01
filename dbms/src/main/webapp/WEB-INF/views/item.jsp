@@ -25,7 +25,6 @@ Name:</td>
 <input value="Add to cart" type="submit" />
 </form></td></tr>
 
-<tr><td><a href="../order">Buy this item</a></td></tr>
 </table>
 <a href="../feedbacks/${item.itemId }">View feedbacks given by users</a>
 <br><br>

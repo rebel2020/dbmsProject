@@ -38,7 +38,32 @@ public class OrderController {
 	public String placeOrder(Model model,HttpServletRequest request)
 	{
 		String userId=request.getUserPrincipal().getName();
-		int orderId=orderdao.placeOrder(userId,cartdao.getPrice(userId));
+		int price=cartdao.getPrice(userId);
+		int orderId=orderdao.placeOrder(userId,price,price,0);
+		List<Cart> list=cartdao.getCartItems(userId);
+		Iterator<Cart> itr=list.iterator();
+		while(itr.hasNext())
+		{
+			Cart cart=itr.next();
+//			System.out.println(cart.getItemName()+" "+cart.getQuantity());
+			orderdao.addToOrder(userId, orderId, cart.getItemId(),cart.getQuantity(),cart.getItemName());
+			int count=itemdao.getItem(cart.getItemId()).getQuantity();
+			count=count-cart.getQuantity();
+			if(count>=0)
+			itemdao.newCount(cart.getItemId(), count);
+			cartdao.removeFromCart(cart.getItemId(), userId);
+		}
+		return "redirect:/orderitems/"+orderId;
+//		List<OrderItem> list1=orderdao.getOrderItems(orderId);
+//		model.addAttribute("list1",list1);
+//		return "order";
+	}
+	@RequestMapping("order/{net_price}")
+	public String placeOfferOrder(Model model,HttpServletRequest request,@PathVariable(value="net_price") int net_price)
+	{
+		System.out.println(request.getParameter("offerId"));
+		String userId=request.getUserPrincipal().getName();
+		int orderId=orderdao.placeOrder(userId,cartdao.getPrice(userId),net_price,Integer.parseInt(request.getParameter("offerId")));
 		List<Cart> list=cartdao.getCartItems(userId);
 		Iterator<Cart> itr=list.iterator();
 		while(itr.hasNext())
@@ -77,8 +102,7 @@ public class OrderController {
 	{
 		List<OrderItem> list=orderdao.getOrderItems(orderId);
 		model.addAttribute("list",list);
-		Order order=new Order();
-		model.addAttribute("order",order);
+		model.addAttribute("order",orderdao.getOrder(orderId));
 		return "order";
 	}
 	@RequestMapping("admin/orderitems/{orderId}")

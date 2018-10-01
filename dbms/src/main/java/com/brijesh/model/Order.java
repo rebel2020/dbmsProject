@@ -11,6 +11,13 @@ public class Order {
 		int empId;
 		int status;
 		int amount;
+		int netAmount;
+		public int getNetAmount() {
+			return netAmount;
+		}
+		public void setNetAmount(int netAmount) {
+			this.netAmount = netAmount;
+		}
 		public int getOrderId() {
 			return orderId;
 		}

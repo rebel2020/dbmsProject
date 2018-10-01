@@ -19,9 +19,11 @@ public class CartdaoImpl implements Cartdao{
 	JdbcTemplate jdbcTemplate;
 	@Autowired
 	DataSource datasource;
+	@Autowired
+	Itemdao itemdao;
 	public void addToCart(Cart cart) {
-		String sql="insert into CART set userId=?,itemId=?,itemName=?,quantity=?,amount=?";
-		Object[] object= {cart.getUserId(),cart.getItemId(),cart.getItemName(),cart.getQuantity(),cart.getAmount()};
+		String sql="insert into CART set userId=?,itemId=?,itemName=?,quantity=?";
+		Object[] object= {cart.getUserId(),cart.getItemId(),cart.getItemName(),cart.getQuantity()};
 		jdbcTemplate.update(sql,object);
 	}
 	
@@ -61,14 +63,14 @@ public class CartdaoImpl implements Cartdao{
 
 	public int getPrice(String userId) {
 		
-		String sql="select * from CART  join ITEMS on CART.userId=\""+userId+"\" and CART.itemId=ITEMS.itemId";
+		String sql="select * from CART  where CART.userId=\""+userId+"\"";
 		List<Cart> list=(List<Cart>)jdbcTemplate.query(sql, new BeanPropertyRowMapper(Cart.class));
 		Iterator<Cart> itr=list.iterator();
 		int amount=0;
 		while(itr.hasNext())
 		{
 			Cart cart=itr.next();
-			amount+=cart.getAmount();
+			amount+=cart.getQuantity()*itemdao.getItem(cart.getItemId()).getPrice();
 		}
 		return amount;
 	}

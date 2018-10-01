@@ -11,9 +11,9 @@ import com.brijesh.model.OrderItem;
 public interface Orderdao {
 	public List<Order> getOrders(String userId);
 	public List<OrderItem> getOrderItems(int orderId);
-	public int placeOrder(String userId,int amount);
+	public int placeOrder(String userId,int amount,int netAmount,int offerId);
 	public void addToOrder(String userId,int orderId,int itemId,int quantity,String itemName);
 	public List<Order> getAllOrders();
 	public void assignEmployee(int orderId,int empId);
-	
+	public Order getOrder(int orderId);
 }

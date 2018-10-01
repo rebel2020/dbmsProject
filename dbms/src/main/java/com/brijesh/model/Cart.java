@@ -6,11 +6,11 @@ import org.hibernate.validator.constraints.Range;
 public class Cart {
 	int itemId;
 	String userId;
-	int amount;
 	@NotEmpty(message="required")
 	@Range(min=1,max=10)
 	int quantity;
 	String itemName;
+	int offerId;
 	public String getItemName() {
 		return itemName;
 	}
@@ -35,11 +35,11 @@ public class Cart {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public int getAmount() {
-		return amount;
+	public int getOfferId() {
+		return offerId;
 	}
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void setOfferId(int offerId) {
+		this.offerId = offerId;
 	}
 	
 }
