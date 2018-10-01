@@ -10,13 +10,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="" method="post" >
 <table>
-<tr><td>Name:</td><td>${user.name }</td></tr>	
-<tr><td>Address:</td><td>${user.address }</td></tr>
-<tr><td>contact:</td><td>${user.contact }</td></tr>
-<tr><td>date of birth:</td><td>${user.DOB }</td></tr>
-<tr><td><a href="./contacts">More contacts</a></td></tr>
-<tr><td><a href="./edit_profile">Edit profile</a></td></tr>
+<tr><td>Name:</td><td><input name="name" value="${user.name}" type="text"/></td></tr>
+<tr><td>Address:</td><td><input name="address" value="${user.address}" type="text"/></td></tr>
+<tr><td>contact:</td><td><input name="contact" value="${user.contact}" type="text"/></td></tr>
+<tr><td>Date of birth:</td><td><input name="DOB" type="date" value="2011-01-13"/></td></tr>
 </table>
+<input type="submit" value="Save">
+</form>
 </body>
 </html>

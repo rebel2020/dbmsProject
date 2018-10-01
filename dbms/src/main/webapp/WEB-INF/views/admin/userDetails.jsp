@@ -11,12 +11,13 @@
 </head>
 <body>
 <table>
-<tr><td>Name:</td><td>${user.name }</td></tr>	
+<tr><td>Name:</td><td>${user.name }</td></tr>
+<tr><td>Username:</td><td>${user.username }</td></tr>
 <tr><td>Address:</td><td>${user.address }</td></tr>
-<tr><td>contact:</td><td>${user.contact }</td></tr>
-<tr><td>date of birth:</td><td>${user.DOB }</td></tr>
-<tr><td><a href="./contacts">More contacts</a></td></tr>
-<tr><td><a href="./edit_profile">Edit profile</a></td></tr>
+<tr><td>Contacts:</td><td><a href="#">View contacts</a></td></tr>
 </table>
+<form action="../switch_status/${user.username }">
+<input type="submit" value='<c:if test="${user.enabled }">Disable this user</c:if> <c:if test="${not user.enabled }">Enable this user</c:if>'>
+</form>
 </body>
 </html>

@@ -72,5 +72,27 @@ public class ItemdaoImpl implements Itemdao{
 		String sql="update ITEMS set quantity=\""+count+"\" where itemId=\""+itemId+"\"";
 		jdbcTemplate.update(sql);
 	}
+	public Boolean isPresent(int itemId) {
+		String sql="select * from ITEMS where itemId=\""+itemId+"\"";
+		return jdbcTemplate.query(sql, new ResultSetExtractor<Item>() {
+			public Item extractData(ResultSet rs) throws SQLException
+			{
+				if(rs.next())
+				{
+					Item item=new Item();
+					item.setItemId(rs.getInt("itemId"));
+					item.setName(rs.getString("name"));
+					item.setDescription(rs.getString("description"));
+					item.setQuantity(rs.getInt("quantity"));
+					item.setPrice(rs.getInt("price"));
+					item.setWeight(rs.getInt("weight"));
+					return item;
+				}
+				return null;
+			}
+			
+		}
+		)!=null;
+	}
 	
 }

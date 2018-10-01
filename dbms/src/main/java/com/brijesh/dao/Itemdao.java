@@ -8,4 +8,5 @@ public interface Itemdao {
 	public void addItem(Item item);
 	public List<Item> getAllItems();
 	public void newCount(int itemId,int count);
+	public Boolean isPresent(int itemId);
 }

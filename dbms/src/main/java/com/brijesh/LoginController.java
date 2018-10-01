@@ -41,7 +41,6 @@ public class LoginController {
 		model.addAttribute("description", "unsecured page !");
 		return "home";
 	}
-
 	@RequestMapping("/admin")
 	public String admin(Model model, Principal principal) {
 
@@ -57,6 +56,13 @@ public class LoginController {
 		List<User> list=userdao.getAllUsers();
 		model.addAttribute("list",list);
 		return "admin/allUsers";
+	}
+	@RequestMapping("admin/view_details/{userId}")
+	public String viewDetails(Model model,@PathVariable(value="userId") String userId)
+	{
+		User user=userdao.getUser(userId);
+		model.addAttribute("user",user);
+		return "admin/userDetails";
 	}
 	@RequestMapping("/user")
 	public String user(Model model, Principal principal) {
@@ -80,7 +86,7 @@ public class LoginController {
 	public String logout(ModelMap model) {
 //		model.addAttribute("message",
 //				"You have successfully logged off from application !");
-		return "logout";
+		return "login";
 
 	}
 
@@ -96,7 +102,6 @@ public class LoginController {
 		
 		User user = new User();
 		model.addAttribute("user", user);
-
 		return "register";
 	}
 	
@@ -118,7 +123,6 @@ public class LoginController {
 			return "home";
 		}
 	}
-	
 	@RequestMapping(value="/user/products")
 	public String checker(Model model,Principal principal) {
 		String user = principal.getName();
@@ -126,7 +130,7 @@ public class LoginController {
 		model.addAttribute("product","product");
 		return "product";
 	}
-	@RequestMapping("sqitch_status/{userId}")
+	@RequestMapping("admin/switch_status/{userId}")
 	public String switchStatus(Model model,@PathVariable(value="userId") String userId)
 	{
 		userdao.switchStatus(userId);

@@ -13,6 +13,7 @@
  	<a href="/dbms/admin/orders">View orders</a><br>
  	<a href="/dbms/admin/offers">View offers</a><br>
  	<a href="/dbms/admin/users">View all users</a><br>
+ 	<a href="offline/records">Go to offline records</a><br>
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <h2>
             Welcome : ${user} | <a

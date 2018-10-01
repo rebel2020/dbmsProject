@@ -10,13 +10,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:forEach items="${list }" var="contact">
 <table>
-<tr><td>Name:</td><td>${user.name }</td></tr>	
-<tr><td>Address:</td><td>${user.address }</td></tr>
-<tr><td>contact:</td><td>${user.contact }</td></tr>
-<tr><td>date of birth:</td><td>${user.DOB }</td></tr>
-<tr><td><a href="./contacts">More contacts</a></td></tr>
-<tr><td><a href="./edit_profile">Edit profile</a></td></tr>
+<tr><td>Contact:  </td><td>${contact.contact }</td><td><form action="./delete_contact/${contact.contactId }"><input type="submit" value="delete this contact"></form></td></tr>
 </table>
+<br><br>
+</c:forEach>
+<form action="./add_contact">
+<input type="submit" value="Add contact">
+</form>
 </body>
 </html>

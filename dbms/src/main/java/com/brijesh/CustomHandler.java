@@ -44,7 +44,12 @@ public class CustomHandler implements
         	return "/admin";
         } else if (authorities.contains("ROLE_USER")) {
         	return "/user";
-        } else {
+        } 
+        else if(authorities.contains("ROLE_EMPLOYEE"))
+        {
+        	return "/employee";
+        }
+        else {
             throw new IllegalStateException();
         }
     }

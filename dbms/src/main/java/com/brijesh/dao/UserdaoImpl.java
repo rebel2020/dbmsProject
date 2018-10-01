@@ -27,8 +27,8 @@ public class UserdaoImpl implements Userdao{
 		this.jdbcTemplate = new JdbcTemplate(datasource);
 	}
 	public void saveOrUpdate(User user) {
-		 String sql = "INSERT INTO USERS(name,username, password,contact,address) VALUES (?,?,?,?,?)";
-		 jdbcTemplate.update(sql,new Object[] {user.getName(),user.getUsername(),user.getPassword(),user.getContact(),user.getAddress()});
+		 String sql = "INSERT INTO USERS(name,username, password,contact,address,DOB) VALUES (?,?,?,?,?,?)";
+		 jdbcTemplate.update(sql,new Object[] {user.getName(),user.getUsername(),user.getPassword(),user.getContact(),user.getAddress(),user.getDOB()});
 		 sql = "INSERT INTO USERS_ROLES(user,role) VALUES(?,?)";
 		 jdbcTemplate.update(sql,new Object[] {user.getUsername(),"ROLE_USER"});
 		 
@@ -50,6 +50,8 @@ public class UserdaoImpl implements Userdao{
 				user.setPassword(rs.getString("password"));
 				user.setAddress(rs.getString("address"));
 				user.setContact(rs.getString("contact"));
+				user.setEnabled(rs.getBoolean("enabled"));
+				user.setDOB(rs.getString("DOB"));
 				return user;
 			}
 			return null;
@@ -57,13 +59,20 @@ public class UserdaoImpl implements Userdao{
 		});
 	}
 	public void switchStatus(String userId) {
-		String sql="update USERS set enabled= not enabled";
+		String sql="update USERS set enabled= not enabled where username=\""+userId+"\"";
 		jdbcTemplate.update(sql);
 		
 	}
 	public List<User> getAllUsers() {
-		String sql="get * from USERS";
+		String sql="select * from USERS where exists(select * from USERS_ROLES where not role='ROLE_ADMIN' and username = user)";
 		List<User> list=jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class));
 		return list;
+	}
+	public void editProfile(User user,String userId) {
+		String sql="update USERS set name=?,address=?,contact=?,DOB=? where username=?";
+		System.out.println();
+		Object[] object= {user.getName(),user.getAddress(),user.getContact(),user.getDOB(),userId};
+		jdbcTemplate.update(sql,object);
+		
 	}
 }

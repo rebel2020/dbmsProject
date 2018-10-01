@@ -1,5 +1,7 @@
 package com.brijesh.model;
 
+import java.util.Date;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 @SuppressWarnings("deprecation")
@@ -13,6 +15,24 @@ public class User{
 	String contact;
 	String address;
 	String name;
+	Boolean enabled;
+	String DOB;
+	public String getDOB() {
+		return DOB;
+	}
+
+	public void setDOB(String dOB) {
+		DOB = dOB;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	public String getName() {
 		return name;
 	}

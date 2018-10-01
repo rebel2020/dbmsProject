@@ -9,6 +9,7 @@
     <a href="items">view all items</a><br>
     <a href="orders">Your orders</a><br>
     <a href="cart">Go to cart</a><br>
+    <a href="profile">Profile</a><br>
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <h2>
             Welcome : ${user} | <a

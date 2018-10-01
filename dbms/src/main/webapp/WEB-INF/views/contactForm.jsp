@@ -10,13 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table>
-<tr><td>Name:</td><td>${user.name }</td></tr>	
-<tr><td>Address:</td><td>${user.address }</td></tr>
-<tr><td>contact:</td><td>${user.contact }</td></tr>
-<tr><td>date of birth:</td><td>${user.DOB }</td></tr>
-<tr><td><a href="./contacts">More contacts</a></td></tr>
-<tr><td><a href="./edit_profile">Edit profile</a></td></tr>
-</table>
+<form:form action="/dbms/add_contact" method="post" modelAttribute="contact">
+<form:input path="contact"/>
+<form:errors path="contact"/>
+<input type="submit">
+</form:form>
 </body>
 </html>

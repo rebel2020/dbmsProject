@@ -26,6 +26,10 @@
 		<form:input path="contact" type="text" /> </td><!-- bind to user.name-->
 		<td><form:errors path="contact" /></td></tr>
 		<tr><td>
+		<tr><td>
+		Date of birth.</td><td>
+		<form:input path="DOB" type="text" /> </td><!-- bind to user.name-->
+		<td><form:errors path="DOB" /></td></tr>
 		Address</td><td>
 		<form:input path="address" type="text" /> </td><!-- bind to user.name-->
 		<td><form:errors path="address" /></td></tr>

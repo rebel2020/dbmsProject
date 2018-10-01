@@ -14,8 +14,9 @@
 <table>
 <tr><td>Username:</td><td>${user.username }</td></tr>
 <tr><td>Name:</td><td>${user.name }</td></tr>
-<tr><a href="view_details/${user.username }">View datails of user</a></tr>
 </table>
+<a href="view_details/${user.username }">View datails of user</a>
+<br><br>
 </c:forEach>
 </body>
 </html>

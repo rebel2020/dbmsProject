@@ -13,4 +13,5 @@ public interface Userdao{
 	public User getUser(String username);
 	public void switchStatus(String userId);
 	public List<User> getAllUsers();
+	public void editProfile(User user,String userId);
 }
