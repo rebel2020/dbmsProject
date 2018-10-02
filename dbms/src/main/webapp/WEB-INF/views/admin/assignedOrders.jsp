@@ -19,6 +19,9 @@
 <tr><td>Working Area:</td>
 <td>${employee.workingArea }</td></tr>
 </table>
+<c:if test="${empty list }">
+<div style="margin-left:5%;"><h3>No order is assigned to this employee...</h3></div>
+</c:if>
 </div>
 <c:forEach items="${list }" var="order">
 <div style="float:left;width:30%;margin-left:5%;background-color:red;margin-top:3%;">

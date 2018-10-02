@@ -21,6 +21,9 @@
 <tr><td>Salary:</td>
 <td><form:input path="salary" type="int"/>
 <form:errors path="salary"></form:errors></td></tr>
+<tr><td>Contact no.:</td>
+<td><form:input path="contactNo" type="text" required="required"/>
+<form:errors path="contactNo"></form:errors></td></tr>
 <tr><td><input type="submit"></td></tr>
 </table>
 </form:form>

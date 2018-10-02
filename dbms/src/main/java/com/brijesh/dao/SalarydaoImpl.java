@@ -25,7 +25,7 @@ public class SalarydaoImpl implements Salarydao{
 	}
 
 	public List<SalaryRecord> getAllRecords() {
-		String sql="select * from SALARYRECORD";
+		String sql="select * from SALARYRECORD order by year, month desc";
 		List<SalaryRecord> list=jdbcTemplate.query(sql, new BeanPropertyRowMapper(SalaryRecord.class));
 		return list;
 	}

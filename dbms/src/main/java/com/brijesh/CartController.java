@@ -20,6 +20,7 @@ import com.brijesh.dao.Cartdao;
 import com.brijesh.dao.CartdaoImpl;
 import com.brijesh.dao.Itemdao;
 import com.brijesh.dao.Offerdao;
+import com.brijesh.dao.Userdao;
 @Controller
 public class CartController {
 	@Autowired
@@ -28,6 +29,9 @@ public class CartController {
 	Offerdao offerdao;
 	@Autowired
 	Itemdao itemdao;
+	@Autowired
+	Userdao userdao;
+	
 	@RequestMapping("addtocart/{itemId}")
 	public String addToCart(@PathVariable(value="itemId") int itemId,HttpServletRequest request,Model model)
 	{
@@ -65,6 +69,7 @@ public class CartController {
 		List<Offer> offers=offerdao.getOffers();
 		model.addAttribute("offers",offers);
 		model.addAttribute("offerId", 0);
+		model.addAttribute("address",userdao.getUser(userId).getAddress());
 		return "Cart";
 	}
 //	@RequestMapping("cart/{offerId}")
@@ -80,6 +85,7 @@ public class CartController {
 		List<Offer> offers=offerdao.getOffers();
 		model.addAttribute("offers",offers);
 		model.addAttribute("offerId", offerId);
+		model.addAttribute("address",userdao.getUser(userId).getAddress());
 		System.out.println(offerId);
 		return "Cart";
 	}

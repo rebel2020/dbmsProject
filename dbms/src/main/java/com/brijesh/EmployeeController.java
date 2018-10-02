@@ -1,6 +1,5 @@
 package com.brijesh;
-import com.brijesh.model.Employee;
-
+import com.brijesh.model.Employee;import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -35,6 +34,7 @@ public class EmployeeController {
 		}
 		else
 		{
+			employee.setJoiningDate(LocalDate.now().toString());
 			employeedao.addEmployee(employee);
 			return "redirect:/admin";
 		}

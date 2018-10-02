@@ -14,7 +14,6 @@
 <table>
 <tr><td>Employee Id:</td><td>${record.empId }</td></tr>
 <tr><td>Salary:</td><td>${record.salary}</td></tr>
-<tr><td>Paid amount:</td><td>${record.paid }</td></tr>
 <tr><td>Date:</td><td>${record.month }/${record.year }</td></tr>
 </table>
 <br><br>

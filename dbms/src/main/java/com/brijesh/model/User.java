@@ -2,6 +2,8 @@ package com.brijesh.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Email;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 @SuppressWarnings("deprecation")
@@ -13,10 +15,19 @@ public class User{
 	@NotEmpty(message="required")
 	private String mpassword;
 	String contact;
+	String email;
 	String address;
 	String name;
 	Boolean enabled;
 	String DOB;
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getDOB() {
 		return DOB;
 	}

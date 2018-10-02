@@ -14,6 +14,13 @@ public class Item {
 	int weight;
 	Boolean isAvailable;
 	String description;
+	String pkgDate;
+	public String getPkgDate() {
+		return pkgDate;
+	}
+	public void setPkgDate(String pkgDate) {
+		this.pkgDate = pkgDate;
+	}
 	public int getPrice() {
 		return price;
 	}

@@ -1,5 +1,6 @@
 package com.brijesh;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +40,7 @@ public class ItemController {
 			return "admin/addItem";
 		}
 		else {
+			item.setPkgDate(LocalDate.now().toString());
 			itemdao.addItem(item);
 			return "redirect:/admin";
 		}
@@ -69,5 +71,12 @@ public class ItemController {
 		Item item=itemdao.getItem(itemId);
 		model.addAttribute("item",item);
 		return "item";
+	}
+	@RequestMapping("admin/item/{itemId}")
+	public String getAdminItem(@PathVariable(value="itemId") int itemId,Model model)
+	{
+		Item item=itemdao.getItem(itemId);
+		model.addAttribute("item",item);
+		return "admin/item";
 	}
 }

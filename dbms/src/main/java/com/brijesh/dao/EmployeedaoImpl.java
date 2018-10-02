@@ -41,6 +41,7 @@ public class EmployeedaoImpl implements Employeedao{
 					employee.setName(rs.getString("name"));
 					employee.setSalary(rs.getInt("salary"));
 					employee.setWorkingArea(rs.getString("workingArea"));
+					employee.setJoiningDate(rs.getString("joiningDate"));
 					return employee;
 				}
 				return null;
@@ -55,8 +56,8 @@ public class EmployeedaoImpl implements Employeedao{
 	}
 
 	public void addEmployee(Employee employee) {
-		String sql="insert into EMPLOYEES set name=?,workingArea=?,salary=?";
-		Object[] object= {employee.getName(),employee.getWorkingArea(),employee.getSalary()};
+		String sql="insert into EMPLOYEES set name=?,workingArea=?,salary=?,contactNo=?,joiningDate=?";
+		Object[] object= {employee.getName(),employee.getWorkingArea(),employee.getSalary(),employee.getContactNo(),employee.getJoiningDate()};
 		jdbcTemplate.update(sql,object);
 	}
 	

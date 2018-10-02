@@ -20,9 +20,13 @@
 <td>${item.salary }</td></tr>
 <tr><td>Working Area:</td>
 <td>${item.workingArea }</td></tr>
+<tr><td>Contact No.:</td>
+<td>${item.contactNo }</td></tr>
+<tr><td>Working since:</td>
+<td>${item.joiningDate }</td></tr>
 </table><br>
 <form action="./assigned_orders/${item.empId }"><input type="submit" value="View assigned orders to this employee"></form>
-<form action="../salary/add_record/${item.empId }"><input type="submit" value="Add payment record"></form>
+<form action="../salary/employee_records/${item.empId }"><input type="submit" value="View payment record"></form>
 </div>
 </c:forEach>
 </body>

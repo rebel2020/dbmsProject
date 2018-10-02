@@ -6,6 +6,13 @@ public class Employee {
 	String workingArea;
 	String contactNo;
 	int salary;
+	String joiningDate;
+	public String getJoiningDate() {
+		return joiningDate;
+	}
+	public void setJoiningDate(String joiningDate) {
+		this.joiningDate = joiningDate;
+	}
 	public int getEmpId() {
 		return empId;
 	}

@@ -45,6 +45,10 @@ public class OrderController {
 		int orderId=orderdao.placeOrder(userId,price,price,0,address,date);
 		List<Cart> list=cartdao.getCartItems(userId);
 		Iterator<Cart> itr=list.iterator();
+		if(!itr.hasNext())
+		{
+			return "redirect:/cart";
+		}
 		while(itr.hasNext())
 		{
 			Cart cart=itr.next();
@@ -68,7 +72,7 @@ public class OrderController {
 		String userId=request.getUserPrincipal().getName();
 		String date=LocalDate.now().toString();
 		String address=request.getParameter("address");
-		int orderId=orderdao.placeOrder(userId,cartdao.getPrice(userId),net_price,Integer.parseInt(request.getParameter("offerId")),date,address);
+		int orderId=orderdao.placeOrder(userId,cartdao.getPrice(userId),net_price,Integer.parseInt(request.getParameter("offerId")),address,date);
 		List<Cart> list=cartdao.getCartItems(userId);
 		Iterator<Cart> itr=list.iterator();
 		while(itr.hasNext())

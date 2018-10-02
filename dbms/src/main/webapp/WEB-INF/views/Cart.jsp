@@ -18,6 +18,7 @@
 <h4>Net price:${net_price }</h4>
 <form action="order/${net_price }">
 <input type="hidden" value="${offerId }" name="offerId">
+<input type="text" value="${address }" name="address">
 <input type="submit" value="Place order">
 
 </form>

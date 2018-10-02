@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
+import javax.validation.constraints.Email;
+
 import com.brijesh.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +29,8 @@ public class UserdaoImpl implements Userdao{
 		this.jdbcTemplate = new JdbcTemplate(datasource);
 	}
 	public void saveOrUpdate(User user) {
-		 String sql = "INSERT INTO USERS(name,username, password,contact,address,DOB) VALUES (?,?,?,?,?,?)";
-		 jdbcTemplate.update(sql,new Object[] {user.getName(),user.getUsername(),user.getPassword(),user.getContact(),user.getAddress(),user.getDOB()});
+		 String sql = "INSERT INTO USERS(name,username, password,contact,address,DOB,email) VALUES (?,?,?,?,?,?,?)";
+		 jdbcTemplate.update(sql,new Object[] {user.getName(),user.getUsername(),user.getPassword(),user.getContact(),user.getAddress(),user.getDOB(),user.getEmail()});
 		 sql = "INSERT INTO USERS_ROLES(user,role) VALUES(?,?)";
 		 jdbcTemplate.update(sql,new Object[] {user.getUsername(),"ROLE_USER"});
 		 
@@ -52,6 +54,7 @@ public class UserdaoImpl implements Userdao{
 				user.setContact(rs.getString("contact"));
 				user.setEnabled(rs.getBoolean("enabled"));
 				user.setDOB(rs.getString("DOB"));
+				user.setEmail(rs.getString("email"));
 				return user;
 			}
 			return null;

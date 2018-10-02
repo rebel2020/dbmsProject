@@ -19,7 +19,7 @@ Iterator itr=list.iterator();
 while(itr.hasNext())
 {
 	Item item=(Item)itr.next();
-	out.println("<div style=\"background-color:red;float:left;width:30%;margin-left:5%;margin-top:5%\"><h4>"+item.getName() +"<a href=\"item/"+item.getItemId() +"\">See details</a></h4></div>");
+	out.println("<div style=\"background-color:red;float:left;width:30%;margin-left:5%;margin-top:5%\"><h4>"+item.getName()+"<br>Price:"+item.getPrice()+"<br>Weight:"+item.getWeight()+"<br>" +"<a href=\"item/"+item.getItemId() +"\">See details</a></h4></div>");
 	
 }
 %>

@@ -39,7 +39,7 @@ public class LoginController {
 	public String welcome(Model model) {
 		model.addAttribute("name", "Home Page");
 		model.addAttribute("description", "unsecured page !");
-		return "home";
+		return "base";
 	}
 	@RequestMapping("/admin")
 	public String admin(Model model, Principal principal) {
@@ -89,7 +89,6 @@ public class LoginController {
 		return "login";
 
 	}
-
 	@RequestMapping(value = "/loginError", method = RequestMethod.GET)
 	public String loginError(ModelMap model) {
 		model.addAttribute("error", "true");

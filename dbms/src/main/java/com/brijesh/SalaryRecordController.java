@@ -33,7 +33,7 @@ public class SalaryRecordController {
 		if(salarydao.isPaid(empId, cal.get(cal.MONTH), cal.get(cal.YEAR)))
 		{
 			model.addAttribute("error","Already paid for this month");
-			return "admin/error";
+//			return "admin/error";
 		}
 		model.addAttribute("month",cal.get(cal.MONTH));
 		model.addAttribute("year",cal.get(cal.YEAR));

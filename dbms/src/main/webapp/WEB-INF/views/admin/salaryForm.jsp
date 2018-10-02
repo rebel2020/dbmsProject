@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div style="color:red">${error }</div>
 <form:form action="" method="post" modelAttribute="record">
 <table>
 <tr><td>Month:</td><td><form:input path="month" value="${month }"/></td></tr>

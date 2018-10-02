@@ -27,10 +27,15 @@
 		<td><form:errors path="contact" /></td></tr>
 		<tr><td>
 		<tr><td>
+		Email</td><td>
+		<form:input path="email" type="email" required="required"/> </td><!-- bind to user.name-->
+		<td><form:errors path="email" /></td></tr>
+		<tr><td>
 		Date of birth.</td><td>
-		<form:input path="DOB" type="text" /> </td><!-- bind to user.name-->
+		<input path="DOB" type="date" id="BOB" name="DOB"/> </td><!-- bind to user.name-->
 		<td><form:errors path="DOB" /></td></tr>
-		Address</td><td>
+		<tr><td>Address</td><td>
+		<form:hidden path="DOB" value="${DOB }"/>
 		<form:input path="address" type="text" /> </td><!-- bind to user.name-->
 		<td><form:errors path="address" /></td></tr>
 		<tr>

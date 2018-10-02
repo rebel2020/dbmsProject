@@ -18,6 +18,12 @@
 <div>Assigned employee ID:${item.empId }</div>
 </td></tr>
 <tr><td>Total amount:</td><td>${item.netAmount }</td></tr>
+<tr><td>
+Address:</td>
+<td>${item.address }</td></tr>
+<tr><td>
+Date of order:</td>
+<td>${item.date }</td></tr>
 </table></div>
 </c:forEach>
 </body>

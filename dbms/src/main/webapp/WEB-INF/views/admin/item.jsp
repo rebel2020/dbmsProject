@@ -15,21 +15,15 @@
 <tr><td>
 Name:</td>
 <td>${item.name }</td></tr>
-<tr><td>Weight:</td><td>${item.weight } gm</td></td>
+<tr><td>Weight:</td><td>${item.weight }</td></td>
 <tr><td>Price:</td><td>${item.price }</td></tr>
 <tr><td>Date when packed:</td><td>${item.pkgDate }</td></tr>
 <tr><td>Description:</td>
 <td>${item.description }</td></tr>
-<tr><td>Hurry up...Only ${item.quantity } items remaining</td></tr>
-<tr><td><form action="../addtocart/${item.itemId}">
-<input type="number" name="quantity" max="${item.quantity }" min="1" required>
-<input value="Add to cart" type="submit" />
-</form></td></tr>
-
+<tr><td>${item.quantity } items remaining in Store</td></tr>
 </table>
-<a href="../feedbacks/${item.itemId }">View feedbacks given by users</a>
+<a href="../../feedbacks/${item.itemId }">View feedbacks given by users</a>
 <br><br>
-<a href="../givefeedback/${item.itemId }">Give feedback</a>
 </div>
 </body>
 </html>
