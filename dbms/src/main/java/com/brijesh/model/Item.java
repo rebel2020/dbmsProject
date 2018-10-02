@@ -12,6 +12,7 @@ public class Item {
 	int quantity;
 	int price;
 	int weight;
+	Boolean isAvailable;
 	String description;
 	public int getPrice() {
 		return price;
@@ -48,5 +49,11 @@ public class Item {
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	public Boolean getIsAvailable() {
+		return isAvailable;
+	}
+	public void setIsAvailable(Boolean isAvailable) {
+		this.isAvailable = isAvailable;
 	}
 }

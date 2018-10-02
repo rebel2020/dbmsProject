@@ -1,5 +1,6 @@
 package com.brijesh;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,7 +40,9 @@ public class OrderController {
 	{
 		String userId=request.getUserPrincipal().getName();
 		int price=cartdao.getPrice(userId);
-		int orderId=orderdao.placeOrder(userId,price,price,0);
+		String date=LocalDate.now().toString();
+		String address=request.getParameter("address");
+		int orderId=orderdao.placeOrder(userId,price,price,0,address,date);
 		List<Cart> list=cartdao.getCartItems(userId);
 		Iterator<Cart> itr=list.iterator();
 		while(itr.hasNext())
@@ -63,7 +66,9 @@ public class OrderController {
 	{
 		System.out.println(request.getParameter("offerId"));
 		String userId=request.getUserPrincipal().getName();
-		int orderId=orderdao.placeOrder(userId,cartdao.getPrice(userId),net_price,Integer.parseInt(request.getParameter("offerId")));
+		String date=LocalDate.now().toString();
+		String address=request.getParameter("address");
+		int orderId=orderdao.placeOrder(userId,cartdao.getPrice(userId),net_price,Integer.parseInt(request.getParameter("offerId")),date,address);
 		List<Cart> list=cartdao.getCartItems(userId);
 		Iterator<Cart> itr=list.iterator();
 		while(itr.hasNext())
@@ -120,5 +125,12 @@ public class OrderController {
 		int empId=Integer.parseInt(request.getParameter("empId"));
 		orderdao.assignEmployee(orderId, empId);
 		return "redirect:/admin/orders";
+	}
+	@RequestMapping("admin/assigned_orders/{empId}")
+	public String getAssignedOrders(@PathVariable(value="empId") int empId,Model model)
+	{
+		model.addAttribute("list",orderdao.getAssignedOrders(empId));
+		model.addAttribute("employee",employeedao.getEmployee(empId));
+		return "admin/assignedOrders"; 
 	}
 }

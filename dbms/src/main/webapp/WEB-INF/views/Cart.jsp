@@ -25,7 +25,7 @@
 <select name="offerId" required="required">
 <option hidden="" value="0">none</option>
 <c:forEach items="${offers }" var="offer">
-<option value="${offer.offerId }">${offer.offerName }</option>
+<option value="${offer.offerId }">${offer.offerName }(${offer.percentageOff } %off)</option>
 </c:forEach>
 </select>
 <input type="submit" value="select offer">

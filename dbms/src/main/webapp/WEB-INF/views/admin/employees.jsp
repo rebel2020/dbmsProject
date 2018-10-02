@@ -20,7 +20,9 @@
 <td>${item.salary }</td></tr>
 <tr><td>Working Area:</td>
 <td>${item.workingArea }</td></tr>
-</table>
+</table><br>
+<form action="./assigned_orders/${item.empId }"><input type="submit" value="View assigned orders to this employee"></form>
+<form action="../salary/add_record/${item.empId }"><input type="submit" value="Add payment record"></form>
 </div>
 </c:forEach>
 </body>

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Order {
 		int orderId;
 		String userId;
-		Date date;
+		String date;
 		int Price;
 		String address;
 		int empId;
@@ -30,10 +30,10 @@ public class Order {
 		public void setUserId(String userId) {
 			this.userId = userId;
 		}
-		public Date getDate() {
+		public String getDate() {
 			return date;
 		}
-		public void setDate(Date date) {
+		public void setDate(String date) {
 			this.date = date;
 		}
 		public int getPrice() {

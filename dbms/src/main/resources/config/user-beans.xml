@@ -15,4 +15,5 @@
     <bean id="offerbean" class="com.brijesh.dao.OfferdaoImpl"></bean>
     <bean id="contactbean" class="com.brijesh.dao.ContactdaoImpl"></bean>
     <bean id="offlinebean" class="com.brijesh.dao.OfflinedaoImpl"></bean>
+    <bean id="salarybean" class="com.brijesh.dao.SalarydaoImpl"></bean>
 </beans>

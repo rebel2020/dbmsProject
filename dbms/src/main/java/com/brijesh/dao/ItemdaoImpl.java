@@ -52,7 +52,7 @@ public class ItemdaoImpl implements Itemdao{
 	}
 	
 	public void deleteItem(int itemId) {
-		String sql="delete from ITEMS where itemId=\""+itemId+"\"";
+		String sql="update ITEMS set isAvailable= not isAvailable,quantity=0  where itemId=\""+itemId+"\"";
 		jdbcTemplate.update(sql);
 		
 		
@@ -64,7 +64,7 @@ public class ItemdaoImpl implements Itemdao{
 	}
 	public List<Item> getAllItems() {
 		List<Item> list;
-		String sql="select * from ITEMS";
+		String sql="select * from ITEMS where isAvailable =true";
 		list=(List<Item>) jdbcTemplate.query(sql, new BeanPropertyRowMapper<Item>(Item.class));
 		return list;
 	}
@@ -73,7 +73,7 @@ public class ItemdaoImpl implements Itemdao{
 		jdbcTemplate.update(sql);
 	}
 	public Boolean isPresent(int itemId) {
-		String sql="select * from ITEMS where itemId=\""+itemId+"\"";
+		String sql="select * from ITEMS where isAvailable=true and itemId=\""+itemId+"\"";
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Item>() {
 			public Item extractData(ResultSet rs) throws SQLException
 			{

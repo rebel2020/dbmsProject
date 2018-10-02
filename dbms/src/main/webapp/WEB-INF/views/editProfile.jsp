@@ -15,7 +15,7 @@
 <tr><td>Name:</td><td><input name="name" value="${user.name}" type="text"/></td></tr>
 <tr><td>Address:</td><td><input name="address" value="${user.address}" type="text"/></td></tr>
 <tr><td>contact:</td><td><input name="contact" value="${user.contact}" type="text"/></td></tr>
-<tr><td>Date of birth:</td><td><input name="DOB" type="date" value="2011-01-13"/></td></tr>
+<tr><td>Date of birth:</td><td><input name="DOB" type="date" value="${user.DOB }"/></td></tr>
 </table>
 <input type="submit" value="Save">
 </form>
