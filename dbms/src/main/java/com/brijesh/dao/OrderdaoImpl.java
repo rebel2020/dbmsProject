@@ -2,9 +2,7 @@ package com.brijesh.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
-
 import javax.sql.DataSource;
 import com.brijesh.model.OrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +10,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
-import com.brijesh.model.Item;
 import com.brijesh.model.Order;
+import com.brijesh.model.UserRole;
 
 public class OrderdaoImpl implements Orderdao{
 	@Autowired
@@ -28,7 +26,7 @@ public class OrderdaoImpl implements Orderdao{
 	}
 
 	public List<OrderItem> getOrderItems(int orderId) {
-		String sql="select * from ORDER_ITEM where orderId=\""+orderId+"\"";
+		String sql="select * from ITEMS,ORDER_ITEM where orderId="+orderId+" and ITEMS.itemId=ORDER_ITEM.itemId";
 		return jdbctemplate.query(sql, new BeanPropertyRowMapper(OrderItem.class));
 	}
 
@@ -58,9 +56,9 @@ public class OrderdaoImpl implements Orderdao{
 		return x;
 	}
 
-	public void addToOrder(String userId, int orderId, int itemId,int quantity,String itemName) {
-		String sql="insert into ORDER_ITEM set orderId=?,itemId=?,userId=?,quantity=?,itemName=?"; 
-		Object[] object= {orderId,itemId,userId,quantity,itemName};
+	public void addToOrder(int orderId, int itemId,int quantity) {
+		String sql="insert into ORDER_ITEM set orderId=?,itemId=?,quantity=?"; 
+		Object[] object= {orderId,itemId,quantity};
 		jdbctemplate.update(sql,object);
 	}
 
@@ -93,10 +91,34 @@ public class OrderdaoImpl implements Orderdao{
 			}
 		});
 	}
-
 	public List<Order> getAssignedOrders(int empId) {
 		String sql="select * from ORDERS where empId="+empId;
 		return jdbctemplate.query(sql, new BeanPropertyRowMapper(Order.class));
 	}
-	
+
+	public void orderConfirmation(String userId, int orderId) {
+		String sql="select * from USERS_ROLES,USERS where USERS.username=USERS_ROLES.user and USERS.username='"+userId+"'";
+		String auth=jdbctemplate.query(sql, new ResultSetExtractor<UserRole>(){
+			public UserRole extractData(ResultSet rs) throws SQLException
+			{
+				if(rs.next())
+				{
+					UserRole userRole=new UserRole();
+					userRole.setRole(rs.getString("role"));
+					return userRole;
+				}
+				return null;
+			}
+		}).getRole();
+		int x=0;
+		if(auth.equals("ROLE_EMPLOYEE"))
+			x=10;
+		else x=1;
+		String s="update ORDERS set status=status+"+x+" where orderId="+orderId;
+		jdbctemplate.update(s);
+	}
+	public List<Order> employeeUndeliveredOrders(int empId) {
+		String sql="select * from ORDERS where empId="+empId+" and status/10 = 0";
+		return jdbctemplate.query(sql, new BeanPropertyRowMapper(Order.class));
+	}
 }

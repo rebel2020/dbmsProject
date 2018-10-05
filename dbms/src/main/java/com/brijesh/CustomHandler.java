@@ -45,6 +45,10 @@ public class CustomHandler implements
         } else if (authorities.contains("ROLE_USER")) {
         	return "/user";
         } 
+        else if(authorities.contains("ROLE_EMPLOYEE"))
+        {
+        	return "/employee";
+        }
         else {
         	
         	return "/login";

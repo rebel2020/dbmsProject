@@ -45,7 +45,7 @@ public class CartController {
 		cart.setUserId(userId);
 //		System.out.println(Integer.parseInt(request.getParameter("quantity")));
 		cart.setQuantity(Integer.parseInt(request.getParameter("quantity")));
-		cart.setItemName(itemdao.getItem(itemId).getName());
+		cart.setName(itemdao.getItem(itemId).getName());
 		cartdao.addToCart(cart);
 		return "redirect:/cart";
 	}
@@ -95,7 +95,6 @@ public class CartController {
 		int offerId=Integer.parseInt(request.getParameter("offerId"));
 		String userId=request.getUserPrincipal().getName();
 		model.addAttribute("offerId",offerId);
-		System.out.println(offerId);
 		return viewOfferCart(model,request,offerId); 
 //		return "redirect:/cart";
 	}

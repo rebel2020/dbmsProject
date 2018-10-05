@@ -1,3 +1,4 @@
+<jsp:include page="adminBase.jsp"></jsp:include>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -18,5 +19,6 @@
 <a href="view_details/${user.username }">View datails of user</a>
 <br><br>
 </c:forEach>
+
 </body>
 </html>

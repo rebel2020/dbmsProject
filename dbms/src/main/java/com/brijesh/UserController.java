@@ -75,4 +75,27 @@ public class UserController {
 		contactdao.deleteContact(contactId);
 		return "redirect:/contacts";
 	}
+	@RequestMapping(value="profile/reset_password",method=RequestMethod.GET)
+	public String resetPassword(Model model)
+	{
+		return "passwordResetForm";
+	}
+	@RequestMapping(value="profile/reset_password",method=RequestMethod.POST)
+	public String resetPassword(Model model,HttpServletRequest request)
+	{
+		String s1=userdao.getUser(request.getUserPrincipal().getName()).getPassword();
+		String s2=request.getParameter("oldPass");
+		
+		if(s1.equals(s2))
+		{
+			model.addAttribute("error","Updated successfully");
+			userdao.resetPassword(request.getUserPrincipal().getName(),request.getParameter("password") );
+			return "redirect:/profile";
+		}
+		else
+		{
+			model.addAttribute("error","Password couldn't reset");
+			return "redirect:/profile";
+		}
+	}
 }

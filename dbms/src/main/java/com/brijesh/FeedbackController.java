@@ -29,6 +29,8 @@ public class FeedbackController {
 	public String addFeedback(Model model,@PathVariable(value="itemId") int itemId,HttpServletRequest request)
 	{
 		Principal principal=request.getUserPrincipal();
+		if(principal==null)
+			return "redirect:/login";
 		Feedback feedback=new Feedback();
 		feedback.setItemId(itemId);
 		feedback.setUserId(principal.getName());
@@ -57,5 +59,12 @@ public class FeedbackController {
 		List<Feedback> list=(List<Feedback>) feedbackdao.getFeedbacks(itemId);
 		model.addAttribute("list",list);
 		return "Feedbacks";
+	}
+	@RequestMapping("admin/feedbacks/{itemId}")
+	public String AllFeedback(@PathVariable(value="itemId") int itemId,Model model)
+	{
+		List<Feedback> list=(List<Feedback>) feedbackdao.getFeedbacks(itemId);
+		model.addAttribute("list",list);
+		return "admin/Feedbacks";
 	}
 }

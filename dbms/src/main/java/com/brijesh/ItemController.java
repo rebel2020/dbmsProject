@@ -28,6 +28,7 @@ public class ItemController {
 	public String addItem(Model model) 
 	{
 		Item item=new Item();
+		model.addAttribute("today",LocalDate.now().toString());
 		model.addAttribute("item",item);
 		return "admin/addItem";
 	}
@@ -40,7 +41,6 @@ public class ItemController {
 			return "admin/addItem";
 		}
 		else {
-			item.setPkgDate(LocalDate.now().toString());
 			itemdao.addItem(item);
 			return "redirect:/admin";
 		}

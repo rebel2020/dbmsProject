@@ -1,3 +1,4 @@
+<jsp:include page="base.jsp"></jsp:include>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,7 +11,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div style="margin-left:10%;margin-right:10%;margin-top:3%;background-color:red;">
+<div class="panel panel-success col-sm-offset-1 col-sm-10">
+<div class="panel panel-heading">
 <table>
 <tr><td>
 Name:</td>
@@ -30,6 +32,7 @@ Name:</td>
 <a href="../feedbacks/${item.itemId }">View feedbacks given by users</a>
 <br><br>
 <a href="../givefeedback/${item.itemId }">Give feedback</a>
+</div>
 </div>
 </body>
 </html>

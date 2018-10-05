@@ -1,11 +1,8 @@
-<%@page import="java.util.Iterator"%>
-<%@page import="org.springframework.ui.Model"%>
-<%@page import="com.brijesh.model.Item"%>
-<%@page import="java.util.List"%>
+<jsp:include page="base.jsp"></jsp:include>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,17 +10,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% 
-List<Item> list=(List<Item>)  request.getAttribute("list");
-Iterator itr=list.iterator();
-while(itr.hasNext())
-{
-	Item item=(Item)itr.next();
-	out.println("<div style=\"background-color:red;float:left;width:30%;margin-left:5%;margin-top:5%\"><h4>"+item.getName()+"<br>Price:"+item.getPrice()+"<br>Weight:"+item.getWeight()+"<br>" +"<a href=\"item/"+item.getItemId() +"\">See details</a></h4></div>");
-	
-}
-%>
-<c:if test=""></c:if>
-<a href="cart">Go to cart</a>
+<c:forEach items="${list }" var="item">
+<div class="panel panel-default col-sm-4 col-sm-offset-1" style="background-color:rgb(150,150,150)">
+<table>
+<tr><td>Item name:</td>
+<td>${item.name }</td></tr>
+<tr><td>Weight:</td>
+<td>${item.weight }</td></tr>
+<tr><td>Pkg Date :</td>
+<td>${item.pkgDate }</td></tr>
+<tr><td>Item price:</td>
+<td>${item.price }</td></tr>
+</table>
+<a href="item/${item.itemId }">Open this item</a>
+</div>
+</c:forEach>
 </body>
 </html>

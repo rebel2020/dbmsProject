@@ -39,7 +39,7 @@ public class LoginController {
 	public String welcome(Model model) {
 		model.addAttribute("name", "Home Page");
 		model.addAttribute("description", "unsecured page !");
-		return "base";
+		return "home";
 	}
 	@RequestMapping("/admin")
 	public String admin(Model model, Principal principal) {
@@ -106,6 +106,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/register",method=RequestMethod.POST)
 	public String registerProcess(@Valid @ModelAttribute("user") User user,BindingResult result,Model model) {
+		System.out.println(user.getDOB());
 		if(result.hasErrors()) {
 			return "register";
 		}
@@ -114,7 +115,7 @@ public class LoginController {
 				model.addAttribute("error","passwords dont match");
 				return "register";
 			}
-			if(userdao.getUser(user.getUsername())!=null) {
+			if(userdao.getUser(user.getUsername())!=null || user.getDOB()==null) {
 				model.addAttribute("error", "username exists");
 				return "register";
 			}

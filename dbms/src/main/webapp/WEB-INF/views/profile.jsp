@@ -1,3 +1,4 @@
+<jsp:include page="base.jsp"></jsp:include>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+${error }
 <table>
 <tr><td>Name:</td><td>${user.name }</td></tr>	
 <tr><td>Username:</td><td>${user.username }</td></tr>
@@ -19,6 +21,7 @@
 <tr><td>date of birth:</td><td>${user.DOB }</td></tr>
 <tr><td><a href="./contacts">More contacts</a></td></tr>
 <tr><td><a href="./edit_profile">Edit profile</a></td></tr>
+<a href="profile/reset_password">Reset password</a>
 </table>
 </body>
 </html>

@@ -78,4 +78,8 @@ public class UserdaoImpl implements Userdao{
 		jdbcTemplate.update(sql,object);
 		
 	}
+	public void resetPassword(String userId, String pass) {
+		String sql="update USERS set password=\""+pass+"\" where username=\""+userId+"\"";
+		jdbcTemplate.update(sql);
+	}
 }

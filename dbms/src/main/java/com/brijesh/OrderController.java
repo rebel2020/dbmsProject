@@ -53,7 +53,7 @@ public class OrderController {
 		{
 			Cart cart=itr.next();
 //			System.out.println(cart.getItemName()+" "+cart.getQuantity());
-			orderdao.addToOrder(userId, orderId, cart.getItemId(),cart.getQuantity(),cart.getItemName());
+			orderdao.addToOrder(orderId, cart.getItemId(),cart.getQuantity());
 			int count=itemdao.getItem(cart.getItemId()).getQuantity();
 			count=count-cart.getQuantity();
 			if(count>=0)
@@ -79,7 +79,7 @@ public class OrderController {
 		{
 			Cart cart=itr.next();
 //			System.out.println(cart.getItemName()+" "+cart.getQuantity());
-			orderdao.addToOrder(userId, orderId, cart.getItemId(),cart.getQuantity(),cart.getItemName());
+			orderdao.addToOrder(orderId, cart.getItemId(),cart.getQuantity());
 			int count=itemdao.getItem(cart.getItemId()).getQuantity();
 			count=count-cart.getQuantity();
 			if(count>=0)
@@ -96,7 +96,7 @@ public class OrderController {
 	{
 		List<Order> list=orderdao.getAllOrders();
 		model.addAttribute("list",list);
-		return "orders";
+		return "admin/orders";
 	}
 	@RequestMapping("orders")
 	public String orders(Model model,HttpServletRequest request)
@@ -136,5 +136,11 @@ public class OrderController {
 		model.addAttribute("list",orderdao.getAssignedOrders(empId));
 		model.addAttribute("employee",employeedao.getEmployee(empId));
 		return "admin/assignedOrders"; 
+	}
+	@RequestMapping("user/deliver/{orderId}")
+	public String userDelivered(Model model,HttpServletRequest request,@PathVariable(value="orderId") int orderId)
+	{
+		orderdao.orderConfirmation(request.getUserPrincipal().getName(), orderId);
+		return "redirect:/orders";
 	}
 }

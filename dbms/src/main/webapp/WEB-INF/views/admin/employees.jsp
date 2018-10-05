@@ -1,3 +1,4 @@
+<jsp:include page="adminBase.jsp"></jsp:include>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.Iterator"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,23 +12,41 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach items="${list }" var="item">
-<div style="float:left;width:30%;margin-left:5%;background-color:red;margin-top:3%">
-<table>
-<tr><td>Name:</td>
-<td>${item.name }</td></tr>
-<tr><td>Salary:</td>
-<td>${item.salary }</td></tr>
-<tr><td>Working Area:</td>
-<td>${item.workingArea }</td></tr>
-<tr><td>Contact No.:</td>
-<td>${item.contactNo }</td></tr>
-<tr><td>Working since:</td>
-<td>${item.joiningDate }</td></tr>
-</table><br>
-<form action="./assigned_orders/${item.empId }"><input type="submit" value="View assigned orders to this employee"></form>
-<form action="../salary/employee_records/${item.empId }"><input type="submit" value="View payment record"></form>
+<div class="panel ">
+<table id="mytable" class="table table-bordred table-striped">
+<thead>
+	<th>Employee Id</th>
+	<th>Name</th>
+	<th>Working area</th>
+	<th>Salary</th>
+	<th>Contact No.</th>
+	<th>Joinin Date</th>
+	<th>Assigned orders</th>
+	<th>Salary record</th>
+	<th>Remove</th>
+</thead>
 </div>
+<tbody>
+<div class="panel-body">
+<c:forEach items="${list }" var="item">
+<tr>
+	<td>${item.empId }</td>
+	<td>${item.name }</td>
+	<td>${item.workingArea }</td>
+	<td>${item.salary }</td>
+	<td>${item.contactNo }</td>
+	<td>${item.joiningDate }</td>
+	<td><a href="/dbms/admin/assigned_orders/${item.empId }"><button class="btn btn-danger btn-sm" >view orders</button></a></td>
+	<td><a href="/dbms/salary/employee_records/${item.empId }"><button class="btn btn-danger btn-sm" >See</button></a></td>
+	<td><a href="#"><button class="btn btn-danger btn-sm" >Remove</button></a></td>
+</tr>
 </c:forEach>
+</div>
+</tbody>
+</table>
+</div>
+
+
+
 </body>
 </html>

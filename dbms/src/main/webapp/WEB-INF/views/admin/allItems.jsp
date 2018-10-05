@@ -1,8 +1,8 @@
+<jsp:include page="adminBase.jsp"></jsp:include>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,17 +11,19 @@
 </head>
 <body>
 <c:forEach items="${list }" var="item">
-<div style="margin-left:5%;margin-right:5%%;margin-top:3%;background-color:red; width:30%">
+<div class="panel panel-default col-sm-4 col-sm-offset-1" style="background-color:rgb(150,150,150)">
 <table>
-<tr><td>Item id:</td><td>${item.itemId }</td></tr>
-<tr><td>Item name:</td><td>${item.name }</td></tr>
-<tr><td>Weight:</td><td>${item.weight }</td></tr>
-<tr><td>Price:</td><td>${item.price }</td></tr>
-<a href="item/${item.itemId }">View Details</a>
+<tr><td>Item name:</td>
+<td>${item.name }</td></tr>
+<tr><td>Weight:</td>
+<td>${item.weight }</td></tr>
+<tr><td>Pkg Date :</td>
+<td>${item.pkgDate }</td></tr>
+<tr><td>Item price:</td>
+<td>${item.price }</td></tr>
 </table>
+<a href="item/${item.itemId }">Open this item</a>
 </div>
-<br>
 </c:forEach>
-
 </body>
 </html>

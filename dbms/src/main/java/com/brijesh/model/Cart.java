@@ -9,13 +9,34 @@ public class Cart {
 	@NotEmpty(message="required")
 	@Range(min=1,max=10)
 	int quantity;
-	String itemName;
+	String name;
 	int offerId;
-	public String getItemName() {
-		return itemName;
+	String pkgDate;
+	int price;
+	int weight;
+	public String getPkgDate() {
+		return pkgDate;
 	}
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
+	public void setPkgDate(String pkgDate) {
+		this.pkgDate = pkgDate;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String itemName) {
+		this.name = itemName;
 	}
 	public int getQuantity() {
 		return quantity;

@@ -1,3 +1,4 @@
+<jsp:include page="base.jsp"></jsp:include>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,14 +11,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="" method="post" >
-<table>
-<tr><td>Name:</td><td><input name="name" value="${user.name}" type="text"/></td></tr>
-<tr><td>Address:</td><td><input name="address" value="${user.address}" type="text"/></td></tr>
-<tr><td>contact:</td><td><input name="contact" value="${user.contact}" type="text"/></td></tr>
-<tr><td>Date of birth:</td><td><input name="DOB" type="date" value="${user.DOB }"/></td></tr>
-</table>
-<input type="submit" value="Save">
-</form>
+<div class="panel panel-danger col-sm-offset-3 col-sm-6">
+	<div class="panel-heading">
+		<form action="" method="post" >
+		Name:<input name="name" value="${user.name}" type="text" class="form-control"/>
+		Address:<input name="address" value="${user.address}" type="text" class="form-control"/>
+		contact:<input name="contact" value="${user.contact}" type="text" class="form-control"/>
+		Date of birth:<input name="DOB" type="date" value="${user.DOB }" class="form-control"/>
+		<input type="submit" value="Update details" class="form-control" style="">
+		</form>
+	</div>
+</div>
 </body>
 </html>

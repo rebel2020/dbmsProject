@@ -22,16 +22,10 @@ public class CartdaoImpl implements Cartdao{
 	@Autowired
 	Itemdao itemdao;
 	public void addToCart(Cart cart) {
-		String sql="insert into CART set userId=?,itemId=?,itemName=?,quantity=?";
-		Object[] object= {cart.getUserId(),cart.getItemId(),cart.getItemName(),cart.getQuantity()};
+		String sql="insert into CART set userId=?,itemId=?,quantity=?";
+		Object[] object= {cart.getUserId(),cart.getItemId(),cart.getQuantity()};
 		jdbcTemplate.update(sql,object);
 	}
-	
-	public void placeOrder(int cartId) {
-		
-		
-	}
-
 	public void removeFromCart(int itemId,String userId) {
 		String sql="delete from CART where itemId=? and userId=?";
 		Object[] object= {itemId,userId};
@@ -39,7 +33,7 @@ public class CartdaoImpl implements Cartdao{
 	}
 	public List<Cart> getCartItems(String userId)
 	{
-		String sql="select * from CART  where userId=\""+userId+"\"";
+		String sql="select * from ITEMS,CART where userId=\""+userId+"\" and ITEMS.itemId=CART.itemId";
 		List<Cart> list=(List<Cart>)jdbcTemplate.query(sql, new BeanPropertyRowMapper(Cart.class));
 		return list;
 	}
@@ -73,5 +67,9 @@ public class CartdaoImpl implements Cartdao{
 			amount+=cart.getQuantity()*itemdao.getItem(cart.getItemId()).getPrice();
 		}
 		return amount;
+	}
+	public void placeOrder(int cartId) {
+		// TODO Auto-generated method stub
+		
 	}
 }
