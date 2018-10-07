@@ -1,5 +1,7 @@
 package com.brijesh.model;
 
+import java.sql.Blob;
+
 public class OrderItem {
 	int OrderId;
 	int itemId;
@@ -7,6 +9,26 @@ public class OrderItem {
 	int quantity;
 	String pkgDate;
 	String description;
+	Blob photo;
+	String forImage;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Blob getPhoto() {
+		return photo;
+	}
+	public void setPhoto(Blob photo) {
+		this.photo = photo;
+	}
+	public String getForImage() {
+		return forImage;
+	}
+	public void setForImage(String forImage) {
+		this.forImage = forImage;
+	}
 	public String getPkgDate() {
 		return pkgDate;
 	}

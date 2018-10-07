@@ -11,18 +11,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach items="${list }" var="offer">
-<table>
-<tr><td>Id:</td><td>${offer.offerId }</td></tr><tr><td>Name:</td>
-<td>${offer.offerName }</td></tr><tr><td>Percentage Off:</td><td>${offer.percentageOff }</td></tr>
+<table id="mytable" class="table table-bordred table-striped">
+<thead>
+	<th>Offer id</th>
+	<th>Offer name</th>
+	<th>percentage Off</th>
+	<th>toggle</th>
+</thead>
+<tbody>
+	<c:forEach items="${list }" var="offer">
+	<tr>
+		<td>${offer.offerId }</td>
+		<td>${offer.offerName }</td>
+		<td>Flat ${offer.percentageOff } %</td>
+		<td>
+		<c:if test="${offer.enabled }">
+		<a href="/dbms/admin/offer/switch_status/${offer.offerId }"><button class="btn btn-default btn-danger">Disable</button></a>
+		</c:if>
+		<c:if test="${not offer.enabled }">
+		<a href="/dbms/admin/offer/switch_status/${offer.offerId }"><button class="btn btn-default btn-success">Enable</button></a>
+		</c:if>
+		</td>
+	</tr>	
+	</c:forEach>
+</tbody>
 </table>
-<form action="/dbms/admin/offer/switch_status/${offer.offerId }">
-<c:if test="${offer.enabled }">Active now</c:if><c:if test="${not offer.enabled }">Not active</c:if><input type="submit" value="Switch status">
-</form>
-</c:forEach>
-<br>
-<form action="./add_offer">
-<input type="submit" value="Add new offer">
+<form action="/dbms/admin/add_offer">
+<input class="form-control btn btn-success" type="submit" value="Add new offer">
 </form>
 
 </body>

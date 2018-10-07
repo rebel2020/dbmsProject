@@ -2,6 +2,7 @@ package com.brijesh;
 
 import java.util.*;
 import java.security.Principal;
+import java.sql.SQLException;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
@@ -28,13 +29,22 @@ public class LoginController {
 	public Userdao userdao;
 	
 	@RequestMapping("profile")
-	public String profile(Model model,HttpServletRequest request)
+	public String profile(Model model,HttpServletRequest request) throws SQLException
 	{
 		User user =new User();
 		user=userdao.getUser(request.getUserPrincipal().getName());
 		model.addAttribute("user",user);
+		if(user.getPhoto()!=null)
+		{
+			byte[] barr=user.getPhoto().getBytes(1, (int) user.getPhoto().length());
+			String image=Base64.getEncoder().encodeToString(barr);
+			model.addAttribute("image",image);
+			model.addAttribute("isExist",true);
+		}
+		else
+			model.addAttribute("isExist",false);
 		return "profile";
-	}
+	} 
 	@RequestMapping(value = "/home")
 	public String welcome(Model model) {
 		model.addAttribute("name", "Home Page");

@@ -1,7 +1,19 @@
 package com.brijesh;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +23,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.brijesh.dao.Contactdao;
 import com.brijesh.dao.Userdao;
@@ -59,14 +74,14 @@ public class UserController {
 		return "editProfile";
 	}
 	@RequestMapping(value="edit_profile", method=RequestMethod.POST)
-	public String editProfile(HttpServletRequest request)
+	public String editProfile(HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException
 	{
 		User user=new User();
 		user.setAddress(request.getParameter("address"));
 		user.setName(request.getParameter("name"));
 		user.setContact(request.getParameter("contact"));
 		user.setDOB(request.getParameter("DOB"));
-		userdao.editProfile(user,request.getUserPrincipal().getName());
+		userdao.editProfile(user,request.getUserPrincipal().getName()); 
 		return "redirect:/profile";
 	}
 	@RequestMapping("delete_contact/{contactId}")
@@ -98,4 +113,19 @@ public class UserController {
 			return "redirect:/profile";
 		}
 	}
+	@RequestMapping(value="changeprofilepic",method=RequestMethod.GET )
+	public String changeProfilepic(Model model)
+	{
+		return "profilePicForm";
+		
+	}
+	@RequestMapping(value="changeprofilepic",method=RequestMethod.POST )
+	public String changeProfilepic(Model model,HttpServletRequest request,@RequestParam CommonsMultipartFile file) throws IOException, ClassNotFoundException, SQLException
+	{
+		byte[] barr=file.getBytes();
+		InputStream is=file.getInputStream();
+		userdao.changeProfilePic(request.getUserPrincipal().getName(), is, barr);
+		return "redirect:/profile";
+	}
+
 }

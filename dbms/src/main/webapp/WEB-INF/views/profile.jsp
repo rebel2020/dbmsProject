@@ -12,6 +12,18 @@
 </head>
 <body>
 ${error }
+<div class="panel panel-default col-sm-6 col-sm-offset-3">
+<div class="col-sm-4">
+	<c:if test="${isExist}">
+		<img alt="BBB" src="data:image/jpeg;base64,${image }" style="width:13vw">
+		<center><b><a href="changeprofilepic">Change profile picture</a></b></center>
+	</c:if>
+	<c:if test="${not isExist }">
+		<img alt="" src='<c:url value="/resources/images/addProfilePic.jpg"></c:url>'  style="width:13vw">
+		<center><b><a href="changeprofilepic">Upload profile picture</a></b></center>
+	</c:if>
+</div>
+<div class="col-sm-8">
 <table>
 <tr><td>Name:</td><td>${user.name }</td></tr>	
 <tr><td>Username:</td><td>${user.username }</td></tr>
@@ -23,5 +35,7 @@ ${error }
 <tr><td><a href="./edit_profile">Edit profile</a></td></tr>
 <a href="profile/reset_password">Reset password</a>
 </table>
+</div>
+</div>
 </body>
 </html>

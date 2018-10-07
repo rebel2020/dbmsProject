@@ -1,4 +1,8 @@
 package com.brijesh.dao;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -6,6 +10,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.brijesh.model.Item;
+import com.mysql.jdbc.Driver;
 
 import org.hibernate.validator.internal.engine.messageinterpolation.InterpolationTerm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +34,7 @@ public class ItemdaoImpl implements Itemdao{
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	public Item getItem(int itemId) {
-		String sql="select * from ITEMS where itemId=\""+itemId+"\"";
+		String sql="select * from ITEMS natural join ITEM_IMAGE where itemId=\""+itemId+"\"";
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Item>() {
 			public Item extractData(ResultSet rs) throws SQLException
 			{
@@ -43,6 +48,7 @@ public class ItemdaoImpl implements Itemdao{
 					item.setPrice(rs.getInt("price"));
 					item.setWeight(rs.getInt("weight"));
 					item.setPkgDate(rs.getString("pkgDate"));
+					item.setPhoto(rs.getBlob("photo"));
 					return item;
 				}
 				return null;
@@ -58,14 +64,39 @@ public class ItemdaoImpl implements Itemdao{
 		
 		
 	}
-	public void addItem(Item item) {
+	public int getMaxItemId()
+	{
+		String sql="select max(itemId) from ITEMS";
+		Item item= jdbcTemplate.query(sql, new ResultSetExtractor<Item>()
+		{
+			public Item extractData(ResultSet rs) throws SQLException
+			{
+				if(rs.next())
+				{
+					Item item=new Item();
+					item.setItemId(rs.getInt("max(itemId)"));
+					return item;
+				}
+				return null;
+			}
+		});
+		if(item!=null)
+			return item.getItemId();
+		return 1;
+	}
+	public void addItem(Item item,InputStream is,byte[] barr) throws ClassNotFoundException, SQLException {
 		String sql="insert into ITEMS set name=?,description=?,quantity=?,price=?,weight=?,pkgDate=?";
 		Object[] object= {item.getName(),item.getDescription(),item.getQuantity(),item.getPrice(),item.getWeight(),item.getPkgDate()};
 		jdbcTemplate.update(sql,object);
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1", "root", "Rebel@123");
+		PreparedStatement ps=con.prepareStatement("insert into ITEM_IMAGE set photo=?, itemId="+getMaxItemId());
+		ps.setBinaryStream(1, is, barr.length);
+		ps.executeUpdate();
 	}
 	public List<Item> getAllItems() {
 		List<Item> list;
-		String sql="select * from ITEMS where isAvailable =true";
+		String sql="select * from ITEMS,ITEM_IMAGE where isAvailable =true and ITEMS.itemId=ITEM_IMAGE.itemId";
 		list=(List<Item>) jdbcTemplate.query(sql, new BeanPropertyRowMapper<Item>(Item.class));
 		return list;
 	}

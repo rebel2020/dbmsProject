@@ -70,20 +70,20 @@ div.sticky {
 	</div>
 	</nav>
   		<div >
-		<nav style="background-color:black;" >
+		<nav style="background-color:black;font-size:150%" >
 		<div class="container-fluid">
-			<ul class="nav navbar-nav">
-				<li><a href="/dbms/home"><span class="glyphicon glyphicon-home">Home</span></a></li>
-				<li><a href="/dbms/cart"><span class="glyphicon glyphicon-shopping-cart">Mycart</span></a></li>
-				<li><a href="/dbms/orders"><span>Orders</span></a></li>
+			<ul class="nav navbar-nav" style="display:inline">
+				<li style="top:-5px;"><a href="/dbms/home"><span class="glyphicon glyphicon-home">Home</span></a></li>
+				<li style="top:-5px;"><a href="/dbms/cart"><span class="glyphicon glyphicon-shopping-cart">Mycart</span></a></li>
+				<li ><a href="/dbms/orders"><span>Orders</span></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
-				<li><a href="/dbms/profile"><span class="glyphicon glyphicon-user">Profile</span></a></li>
-				<li><a href="/dbms/logout"><span class="glyphicon glyphicon-log-out">Logout</span></a></li>
+				<li style="top:-5px;"><a href="/dbms/profile"><span class="glyphicon glyphicon-user">Profile</span></a></li>
+				<li style="top:-5px;"><a href="/dbms/j_spring_security_logout"><span class="glyphicon glyphicon-log-out">Logout</span></a></li>
 			</c:if>
 			<c:if test="${pageContext.request.userPrincipal.name == null}">
-				<li class="dropdown dropdown-right">
+				<li class="dropdown dropdown-right" style="top:-5px;">
           		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user">Login/SignUp</span></a>
     	      <ul class="dropdown-menu">
         	    <li><a href="/dbms/login">Login</a></li>
@@ -93,7 +93,7 @@ div.sticky {
 			</c:if>
 			</ul>
 			<ul class="nav navbar-nav navbar-right" style="margin-right:10%">
-				<li><a href="/dbms/aboutus"><span>About us</span></a></li>
+				<li "><a href="/dbms/aboutus"><span>About us</span></a></li>
 			</ul>
 
 		</div>

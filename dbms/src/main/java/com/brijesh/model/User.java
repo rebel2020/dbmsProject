@@ -1,5 +1,7 @@
 package com.brijesh.model;
 
+import java.io.File;
+import java.sql.Blob;
 import java.util.Date;
 
 import javax.validation.constraints.Email;
@@ -20,6 +22,15 @@ public class User{
 	String name;
 	Boolean enabled;
 	String DOB;
+	Blob photo;
+	public Blob getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(Blob photo) {
+		this.photo = photo;
+	}
+
 	public String getEmail() {
 		return email;
 	}

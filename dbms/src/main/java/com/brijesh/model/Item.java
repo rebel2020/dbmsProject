@@ -1,5 +1,7 @@
 package com.brijesh.model;
 
+import java.sql.Blob;
+
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 
@@ -15,6 +17,20 @@ public class Item {
 	Boolean isAvailable;
 	String description;
 	String pkgDate;
+	Blob photo;
+	String forImage;
+	public String getForImage() {
+		return forImage;
+	}
+	public void setForImage(String forImage) {
+		this.forImage = forImage;
+	}
+	public Blob getPhoto() {
+		return photo;
+	}
+	public void setPhoto(Blob photo) {
+		this.photo = photo;
+	}
 	public String getPkgDate() {
 		return pkgDate;
 	}

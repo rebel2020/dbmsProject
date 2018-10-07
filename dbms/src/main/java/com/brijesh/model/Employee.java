@@ -1,5 +1,7 @@
 package com.brijesh.model;
 
+import java.sql.Blob;
+
 public class Employee {
 	int empId;
 	String name;
@@ -7,6 +9,13 @@ public class Employee {
 	String contactNo;
 	int salary;
 	String joiningDate;
+	Blob photo;
+	public Blob getPhoto() {
+		return photo;
+	}
+	public void setPhoto(Blob photo) {
+		this.photo = photo;
+	}
 	public String getJoiningDate() {
 		return joiningDate;
 	}

@@ -179,6 +179,5 @@ div.sticky {
 	<center>WELCOME</center>	
 </div>
 
-
 </body>
 </html>

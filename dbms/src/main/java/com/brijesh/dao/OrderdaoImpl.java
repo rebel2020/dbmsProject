@@ -26,7 +26,7 @@ public class OrderdaoImpl implements Orderdao{
 	}
 
 	public List<OrderItem> getOrderItems(int orderId) {
-		String sql="select * from ITEMS,ORDER_ITEM where orderId="+orderId+" and ITEMS.itemId=ORDER_ITEM.itemId";
+		String sql="select * from ITEMS,ORDER_ITEM,ITEM_IMAGE where orderId="+orderId+" and ITEMS.itemId=ORDER_ITEM.itemId and ITEMS.itemId=ITEM_IMAGE.itemId";
 		return jdbctemplate.query(sql, new BeanPropertyRowMapper(OrderItem.class));
 	}
 

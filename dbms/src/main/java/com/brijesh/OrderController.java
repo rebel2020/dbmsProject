@@ -1,6 +1,8 @@
 package com.brijesh;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
 
@@ -107,17 +109,29 @@ public class OrderController {
 		return "orders";
 	}
 	@RequestMapping("orderitems/{orderId}")
-	public String getOrderItems(Model model,@PathVariable(value="orderId") int orderId,HttpServletRequest request)
+	public String getOrderItems(Model model,@PathVariable(value="orderId") int orderId,HttpServletRequest request) throws SQLException
 	{
 		List<OrderItem> list=orderdao.getOrderItems(orderId);
+		Iterator<OrderItem> itr=list.iterator();
+		while(itr.hasNext())
+		{
+			OrderItem item=itr.next();
+			item.setForImage(Base64.getEncoder().encodeToString(item.getPhoto().getBytes(1, (int) item.getPhoto().length())));
+		}
 		model.addAttribute("list",list);
 		model.addAttribute("order",orderdao.getOrder(orderId));
 		return "order";
 	}
 	@RequestMapping("admin/orderitems/{orderId}")
-	public String getOrderItems(@PathVariable(value="orderId") int orderId,Model model)
+	public String getOrderItems(@PathVariable(value="orderId") int orderId,Model model) throws SQLException
 	{
 		List<OrderItem> list=orderdao.getOrderItems(orderId);
+		Iterator<OrderItem> itr=list.iterator();
+		while(itr.hasNext())
+		{
+			OrderItem item=itr.next();
+			item.setForImage(Base64.getEncoder().encodeToString(item.getPhoto().getBytes(1, (int) item.getPhoto().length())));
+		}
 		model.addAttribute("list",list);
 		List<Employee> employees=employeedao.getAllEmployee();
 		model.addAttribute("employees",employees);

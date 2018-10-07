@@ -13,25 +13,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="../assign_employee/${orderId }" method="post" id="assign">
-<select name="empId">
-<c:forEach items="${employees }" var="employee">
-<option value="${employee.empId }">${employee.empId }  ${employee.name }</option>
-</c:forEach>
-</select>
-<!-- <input name="empId" type="number"> -->
-<input type="submit" value="submit">
-</form>
 <c:forEach items="${list }" var="item">
-<div class="panel panel-default col-sm-offset-1 col-sm-4">
-<table>
-<tr><td>
-Name:</td>
-<td>${item.name }</td></tr>
-<tr><td>Quantity:</td><td>${item.quantity }</td></tr>
-<tr><td>Date when packed:</td><td>${item.pkgDate }</td></tr>
-<tr><td>Description:</td><td>${item.description }</td></tr>
-</table></div>
+<div class="col-sm-offset-1 col-sm-10 col-sm-offset-1 panel panel-default" >
+	<div class="col-sm-4" style="margin-right:2%;">
+		<img alt="" src="data:image/jpeg;base64,${item.forImage }" class="img-responsive" style="height:40vh">
+	</div>
+	<div class="col-sm-7">
+		<h1>${item.name }</h1>
+		<h4>Quantity:${item.quantity }</h4>
+		<h4>Pkg Date:${item.pkgDate }</h4>
+	</div>
+</div>
 </c:forEach>
+
 </body>
 </html>

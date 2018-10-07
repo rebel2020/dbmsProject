@@ -11,16 +11,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="col-sm-offset-3 col-sm-6 panel panel-default">
 <form:form modelAttribute="offer" action="./add_offer" method="post">
 <table>
-<tr><td>Name of offer:</td>
-<td><form:input path="offerName" type="text" required="required"/>
-<form:errors path="offerName"></form:errors></td></tr>
-<tr><td>Percentage Off:</td><td><form:input path="percentageOff" type="num" max="80" min="0"/>
+<tr><label><b>Name of offer:</b></label>
+<form:input path="offerName" type="text" required="required" class="form-control"/>
+<form:errors path="offerName"></form:errors></tr>
+<tr><label><b>Percentage Off:</b></label>
+<form:input path="percentageOff" type="num" max="80" min="0" class="form-control"/>
 <form:errors path="percentageOff"></form:errors>
-</td></tr>
+</tr>
+<br>
 </table>
-<input type="submit" value="Add">
+<input type="submit" value="Add the offer" class="form-control btn btn-success">
 </form:form>
+</div>
 </body>
 </html>

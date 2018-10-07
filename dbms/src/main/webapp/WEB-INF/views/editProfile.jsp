@@ -13,7 +13,7 @@
 <body>
 <div class="panel panel-danger col-sm-offset-3 col-sm-6">
 	<div class="panel-heading">
-		<form action="" method="post" >
+		<form action="" method="post" enctype="multipart/form-data">
 		Name:<input name="name" value="${user.name}" type="text" class="form-control"/>
 		Address:<input name="address" value="${user.address}" type="text" class="form-control"/>
 		contact:<input name="contact" value="${user.contact}" type="text" class="form-control"/>
