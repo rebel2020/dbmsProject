@@ -129,10 +129,9 @@ public class UserController {
 		userdao.changeProfilePic(request.getUserPrincipal().getName(), is, barr);
 		return "redirect:/profile";
 	}
-/*	@RequestMapping("admin/switch_user_status/{userId}")
-	public String switchStatus(@PathVariable(value="userId") String userId,Model model)
+	@RequestMapping("aboutus")
+	public String aboutUs()
 	{
-		userdao.switchStatus(userId);
-		return "redirect:/admin/users";
-	}*/
+		return "aboutus";
+	}
 }

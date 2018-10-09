@@ -20,22 +20,17 @@
 
 <!-- Footer -->
 	<div class="panel panel-danger col-sm-12">
-		<div class="col-sm-3" >
+		<div class="col-sm-2" >
 			<h4 style="matgin-left:3%">Quick links</h4>
-			<label style="matgin-left:3%"><a href="/dbms/home">Home</a></label><br>
-			<label style="matgin-left:3%"><a href="#">About us</a></label><br>
-			<label style="matgin-left:3%"><a href="/dbms/items">Get started</a></label><br>
+			<label ><a href="/dbms/home">Home</a></label><br>
+			<label ><a href="#">About us</a></label><br>
+			<label ><a href="/dbms/items">Get started</a></label><br>
 		</div>
 		<div class="col-sm-3" style="float:right" >
-			<h4 style="matgin-left:3%">Contacts</h4>
-			<label style="matgin-left:3%">Mobile:</label>+91-9984-739-387<br>
-			<label style="matgin-left:3%">Email:</label>honey.paradise786@gmail.com<br>
-			<label style="matgin-left:3%">Facebook:</label>Facebook<br>
-		</div>
-		<div class="col-sm-3" >
-			<label style="matgin-left:3%"><a href="#">Report a problem</a></label><br>
-			<label style="matgin-left:3%"><a href="#">Rate our site</a></label><br>
-			
+			<h4 >Contacts</h4>
+			<label >Mobile:</label>+91-9984-739-387<br>
+			<label >Email:</label>honey.paradise786@gmail.com<br>
+			<label >Facebook:</label>honeyparadise123@facebook.com<br>
 		</div>
 	</div>
 </body>

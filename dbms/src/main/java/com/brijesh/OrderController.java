@@ -65,13 +65,16 @@ public class OrderController {
 		return "redirect:/orderitems/"+orderId;
 	}*/
 	@Transactional
-	@RequestMapping("order/{net_price}")
-	public String placeOfferOrder(Model model,HttpServletRequest request,@PathVariable(value="net_price") int net_price)
+	@RequestMapping("order/{net_price}/{offerId}")
+	public String placeOfferOrder(Model model,HttpServletRequest request,@PathVariable(value="net_price") int net_price,@PathVariable(value="offerId") int offerId)
 	{
 		String userId=request.getUserPrincipal().getName();
 		String date=LocalDate.now().toString();
-		String address=request.getParameter("address");
-		int orderId=orderdao.placeOrder(userId,cartdao.getPrice(userId),net_price,Integer.parseInt(request.getParameter("offerId")),address,date);
+		String address=request.getParameter("productinfo");
+		System.out.println(request.getParameter("email"));
+		System.out.println(request.getParameter("lastname"));
+		System.out.println(request.getParameter("address1"));
+		int orderId=orderdao.placeOrder(userId,cartdao.getPrice(userId),net_price,offerId,address,date);
 		List<Cart> list=cartdao.getCartItems(userId);
 		Iterator<Cart> itr=list.iterator();
 		while(itr.hasNext())
@@ -150,9 +153,10 @@ public class OrderController {
 		return "redirect:/orders";
 	}
 	@RequestMapping("pay/{amount}")
-	public String pay(Model model,@PathVariable(value="amount") int amount)
+	public String pay(Model model,@PathVariable(value="amount") int amount,HttpServletRequest request)
 	{
-		model.addAttribute("amt",1);
+		model.addAttribute("amt",amount);
+		model.addAttribute("offerId",request.getParameter("offerId"));
 		return "payment";
 	}
 }
