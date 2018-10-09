@@ -11,10 +11,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="panel panel-success col-sm-offset-2 col-sm-8">
+<div class="panel-heading">
+<label><b>Enter contact</b></label>
 <form:form action="/dbms/add_contact" method="post" modelAttribute="contact">
-<form:input path="contact"/>
+<form:input path="contact" class="form-control"/>
 <form:errors path="contact"/>
-<input type="submit">
+<input type="submit" value="Save" class="form-control btn-danger">
 </form:form>
+</div>
+</div>
 </body>
 </html>

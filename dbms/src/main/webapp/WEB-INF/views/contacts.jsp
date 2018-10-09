@@ -10,15 +10,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-<c:forEach items="${list }" var="contact">
+<div class="col-sm-offset-1 col-sm-10">
 <table>
-<tr><td>Contact:  </td><td>${contact.contact }</td><td><form action="./delete_contact/${contact.contactId }"><input type="submit" value="delete this contact"></form></td></tr>
+	<thead>
+		<th><label><b>Contact</b></label></th>
+		<th><label><b>Delete</b></label></th>
+	</thead>
+	<tbody>
+		<c:forEach items="${list }" var="contact">
+			<tr>
+				<td>${contact.contact }</td>
+				<br>
+				<td><a href="./delete_contact/${contact.contactId }"><button class="btn btn-sm btn-danger">delete this contact</button></a></td>
+			</tr>
+		</c:forEach>
+	</tbody>
 </table>
-<br><br>
-</c:forEach>
+<br>
 <form action="./add_contact">
-<input type="submit" value="Add contact">
+<input type="submit" value="Add contact" class="btn btn-success">
 </form>
+</div>
+<body>
+
 </body>
 </html>

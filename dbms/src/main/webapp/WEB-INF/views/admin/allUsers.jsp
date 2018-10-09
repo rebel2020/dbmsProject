@@ -11,14 +11,36 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach items="${list }" var="user">
-<table>
-<tr><td>Username:</td><td>${user.username }</td></tr>
-<tr><td>Name:</td><td>${user.name }</td></tr>
+<table class="table table-bordred table-striped">
+	<thead>
+		<th>Username</th>
+		<th>Name</th>
+		<th>Address</th>
+		<th>Email</th>
+		<th>Contact</th>
+		<th>Details</th>
+		<th>Ststus</th>
+	</thead>
+	<tbody>
+		<c:forEach items="${list }" var="user">
+		<tr>
+			<td>${user.username }</td>
+			<td>${user.name }</td>
+			<td>${user.address }</td>
+			<td>${user.email }</td>
+			<td>${user.contact }</td>
+			<td><a href="view_details/${user.username }"><button class="btn btn-sm">View</button></a></td>
+			<td>
+			<c:if test="${user.enabled }"><a href="/dbms/admin/switch_status/${user.username }"><button class="btn btn-danger">Disable</button></a></c:if>
+			<c:if test="${not user.enabled }"><a href="/dbms/admin/switch_status/${user.username }"><button class="btn btn-success">Enable</button></a></c:if>
+			</td>
+		
+		</tr>
+		
+		
+		</c:forEach>
+	
+	</tbody>
 </table>
-<a href="view_details/${user.username }">View datails of user</a>
-<br><br>
-</c:forEach>
-
 </body>
 </html>

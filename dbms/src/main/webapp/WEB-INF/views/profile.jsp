@@ -24,7 +24,7 @@ ${error }
 	</c:if>
 </div>
 <div class="col-sm-8">
-<table>
+<table style="font-size:120%">
 <tr><td>Name:</td><td>${user.name }</td></tr>	
 <tr><td>Username:</td><td>${user.username }</td></tr>
 <tr><td>Email:</td><td>${user.email }</td></tr>

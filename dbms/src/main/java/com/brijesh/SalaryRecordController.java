@@ -50,8 +50,14 @@ public class SalaryRecordController {
 			model.addAttribute("record",record);
 			return "admin:/salaryForm";
 		}
+		else if(salarydao.isPaid(record.getEmpId(), record.getMonth(), record.getYear()))
+		{
+			model.addAttribute("error","Already paid for this month please enter correct month");
+			return "admin/salaryForm";
+		}
 		else
 		{
+			record.setSalary(employeedao.getEmployee(record.getEmpId()).getSalary());
 			salarydao.addRecord(record);
 			return "redirect:/salary/employee_records/"+record.getEmpId();
 		}

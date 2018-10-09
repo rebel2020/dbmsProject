@@ -1,5 +1,8 @@
 package com.brijesh;
-import com.brijesh.model.Employee;import java.time.LocalDate;
+import com.brijesh.model.Employee;
+import com.brijesh.model.Order;
+
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +54,13 @@ public class EmployeeController {
 		List<Employee> list=(List<Employee>)employeedao.getAllEmployee();
 		model.addAttribute("list",list);
 		return "admin/employees";
+	}
+	@RequestMapping("employee/assigned_orders")
+	public String getAssignedOrders(Model model,HttpServletRequest request)
+	{
+		List<Order> list=orderdao.getAssignedOrders(Integer.parseInt(request.getUserPrincipal().getName()));
+		model.addAttribute("list",list);
+		return "employee/orders";
 	}
 	@RequestMapping("employee")
 	public String employeeHomePage(Model model,HttpServletRequest request)

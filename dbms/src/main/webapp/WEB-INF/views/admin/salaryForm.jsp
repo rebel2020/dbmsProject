@@ -11,14 +11,18 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="col-sm-offset-3 col-sm-6 col-sm-offset-3 panel panel-default">
 <div style="color:red">${error }</div>
 <form:form action="" method="post" modelAttribute="record">
-<table>
-<tr><td>Month:</td><td><form:input path="month" value="${month }"/></td></tr>
-<tr><td>Year:</td><td><form:input path="year" value="${year }"/></td></tr>
-<tr><td>Salary:</td><td><form:input path="salary" value="${salary }"/></td></tr>
-</table>
-<input type="submit" value="submit">
+<label><b>Month:</b></label>
+<form:input path="month" value="${month }" class="form-control" type="number" max="12" min="1"/>
+<label><b>Year:</b></label>
+<form:input path="year" value="${year }" class="form-control"/>
+<label><b>Amount:</b></label>
+<form:input path="paid" value="${salary }" class="form-control"/>
+
+<input type="submit" value="submit" class="form-control">
 </form:form>
+</div>
 </body>
 </html>

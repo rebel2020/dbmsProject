@@ -126,5 +126,13 @@ public class UserdaoImpl implements Userdao{
 			}
 		})!=null;
 	}
+	public void registerEmployee(User user) {
+		 String sql = "INSERT INTO USERS(name,username, password,contact,address,DOB,email) VALUES (?,?,?,?,?,?,?)";
+		 jdbcTemplate.update(sql,new Object[] {user.getName(),user.getUsername(),user.getPassword(),user.getContact(),user.getAddress(),user.getDOB(),user.getEmail()});
+		 sql = "INSERT INTO USERS_ROLES(user,role) VALUES(?,?)";
+		 jdbcTemplate.update(sql,new Object[] {user.getUsername(),"ROLE_EMPLOYEE"});
+
+		
+	}
 	
 }

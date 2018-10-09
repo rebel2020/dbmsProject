@@ -48,6 +48,24 @@ public class EmployeedaoImpl implements Employeedao{
 			}	
 		});
 	}
+	public int getMaxEmpId() {
+		String sql="select max(empId) from EMPLOYEES";
+		Employee employee=jdbcTemplate.query(sql, new ResultSetExtractor<Employee>(){
+			public Employee extractData(ResultSet rs) throws SQLException
+			{
+				if(rs.next())
+				{
+					Employee employee=new Employee();
+					employee.setEmpId(rs.getInt("max(empId)"));
+					return employee;
+				}
+				return null;
+			}	
+		});
+		if(employee!=null)
+			return employee.getEmpId();
+		return 0;
+	}
 	public List<Employee> getAllEmployee() {
 		String sql="select * from EMPLOYEES";
 		List<Employee> list;
@@ -56,9 +74,11 @@ public class EmployeedaoImpl implements Employeedao{
 	}
 
 	public void addEmployee(Employee employee) {
-		String sql="insert into EMPLOYEES set name=?,workingArea=?,salary=?,contactNo=?,joiningDate=?";
-		Object[] object= {employee.getName(),employee.getWorkingArea(),employee.getSalary(),employee.getContactNo(),employee.getJoiningDate()};
+		int empId=getMaxEmpId()+1;
+		String sql="insert into EMPLOYEES set empId=?name=?,workingArea=?,salary=?,contactNo=?,joiningDate=?";
+		Object[] object= {empId,employee.getName(),employee.getWorkingArea(),employee.getSalary(),employee.getContactNo(),employee.getJoiningDate()};
 		jdbcTemplate.update(sql,object);
+		
 	}
 	
 }

@@ -11,27 +11,60 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach items="${list }" var="item">
-<div style="margin-left:10%;margin-right:10%;margin-top:3%;background-color:rgb(200,200,200);">
-<div style="margin-left:5%;margin-top:1%;">
-<a href="orderitems/${item.orderId }">
-<table>
-<tr><td>
-Order Id:</td><td> ${item.orderId}
-</td></tr>
-<tr><td>Total amount:</td><td>${item.amount }</td></tr>
-<tr><td>Net amount:</td><td>${item.netAmount }</td></tr>
-<tr><td>
-Address:</td>
-<td>${item.address }</td></tr>
-<tr><td>
-Date of order:</td>
-<td>${item.date }</td></tr>
-<tr><td><div>Assigned employee ID:${item.empId }</div></td></tr>
+<div class="panel ">
+<table id="mytable" class="table table-bordred table-striped">
+<thead>
+	<th>Order Id</th>
+	<th>User</th>
+	<th>Address</th>
+	<th>Total amount</th>
+	<th>Net amount</th>
+	<th>Date </th>
+	<th>Assign Employee</th>
+	<th>Status</th>
+	<th>View</th>
+</thead>
+</div>
+<tbody>
+<div class="panel-body">
+<c:forEach items="${list }" var="order">
+<tr>
+	<td>${order.orderId }</td>
+	<td>${name.name }</td>
+	<td>${order.address }</td>
+	<td>${order.amount }</td>
+	<td>${order.netAmount }</td>
+	<td>${order.date }</td>
+	
+	<c:if test="${order.empId ==0 }">
+	<form action="assign_employee/${order.orderId }" method="post">
+		<td><select class="form-control" name="empId">
+			<option value="0" >select</option>
+			<c:forEach items="${list1 }" var="employee">
+				<option value="${employee.empId }">${employee.name }(${ employee.workingArea})</option>
+			</c:forEach>
+		</select></td>
+		<td>
+		<input type="submit" class="btn btn-xs btn-danger form-control" value="Assign Employee">
+		</td>
+	</form>
+	</c:if>
+	<c:if test="${order.empId !=0 }">
+	<td>	${order.empId }</td>
+	<td>
+		<c:if test="${order.status==11 }">Delivered on ${order.deliveryDate	 }</c:if>
+		<c:if test="${order.status!=11 }">Yet to deliver</c:if>
+	</td>	
+	</c:if>
+	</td>
+	<td><a href="./orderitems/${order.orderId }"><button class="btn btn-sm btn-success">View</button></a></td>
+</tr>
+</c:forEach>
+</div>
+</tbody>
 </table>
 </div>
-</a>
-</div>
-</c:forEach>
+
+
 </body>
 </html>

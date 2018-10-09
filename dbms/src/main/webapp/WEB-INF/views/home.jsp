@@ -18,6 +18,14 @@
     });
 </script>
 <style>
+    @media (max-width: 700px) {
+        #test {
+            display: none;
+        }
+    }
+</style>
+
+<style>
 @font-face{
 	font-family:"myFont";
 	src: url("<c:url value="/resources/css/boldFont.ttf"></c:url>");
@@ -56,6 +64,20 @@ div.sticky {
   -o-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
 }
+.texm {
+  color: white;
+  width: 40vw;
+  height: 50vh;
+  padding: 50px 15px 0 15px;
+  opacity: 0;
+  position: absolute;
+  top: 5vh;
+  left: 10vw;
+  font-size:200%;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
 
 .pic {
   position: relative;
@@ -84,7 +106,7 @@ div.sticky {
 }
 </style>
 </head>
-<body>
+<body >
 <!-- 
 <div class="pic">
   <img src='<c:url value="/resources/Honey5.jpg"></c:url>'>
@@ -178,6 +200,52 @@ div.sticky {
 <div style="background-color:fffaf0;font-family:'myFont';font-size:800%;position:relative;top:-6%">
 	<center>WELCOME</center>	
 </div>
-
+<div class="col-sm-12">
+<div style="margin-left:6%" >
+	<div class="item pic col-sm-5" style="height:50vh;width:35vw">
+      <img src='<c:url value="/resources/rawHoney.jpg"></c:url>' class="responsive" style="width:100%;height:90%;overrflow:hidden">
+            <span class="imgtext" style="width:33vw;position:absolute;left:0vw"  style="font-family:myFont">
+           	<center><div>Raw Honey</div></center>
+           </span>     
+    </div>
+    <div class="col-sm-6">
+    <div >
+<label style="color:red;font-size:200%">Raw honey for immunity, Asthma and allergy</label>
+<p><span style="color: #333399;font-size:130%"><span style="color: #000080;">Immunity can be increased by using honey daily.</span></span></p>
+<p><span style="color: #333399;font-size:130%">Initially less pollen honey needs to be used.</span></p>
+<p><span style="color: #333399;font-size:130%">Then less pollen honey along with wild forest honey needs to used.</span></p>
+<p><span style="color: #333399;font-size:130%">Immunity, asthma, allergy and honey is a complex correlation</span></p>
+<p><span style="color: #333399;font-size:130%">Complete details about the correlation is written in following article </span></p>
+<p style="text-align: right;">View <a style="text-align: right;" href="https://www.healthline.com/health/food-nutrition/top-raw-honey-benefits" target="_blank" rel="noopener"><span style="color: #ff0000;"><strong> More benefits of raw honey</strong></span></a></p>    
+    </div>
+    </div>
+</div>
+</div>
+<hr>
+<div class="" style="margin-top:2%">
+<div>
+			<div class=" pic" style="width:80vw;margin-left:8vw;height:62vh">
+			<img src='<c:url value="/resources/bulkHoney.jpg"></c:url>' alt="image" class="img-responsive" style="width:80vw;height:60vh;">
+			<span class="imgtext" style="display:inline-block;">
+		<center style="position:relative;left:-10vw">	<label><a href="bulk" style="color:white">Buy honey in bulk</a>	</label>
+			</center></span>
+		</div>
+</div>
+</div>
+<br><br>
+<div class=" col-sm-11" style="margin-left:6vw">
+	<div class="col-sm-5">
+	<p style="font-size:190%">
+		Pure, Real Raw Honey
+Enjoy pure, raw, unadulterated, unfiltered honey at its finest. Our honey is unpasteurized and totally raw. It has no sugars added. It is never mixed with cheap offshore honey.
+ It still has naturally-occurring pollen from the bees. The live enzymes and yeasts are present. This is 100% raw honey! 
+ <span style="color:red">Not sure what raw honey is?</span> Find out on our <a href="https://rationalwiki.org/wiki/Raw_honey">FAQ</a>. 
+	</p>
+	</div>
+	<div col-sm-4>	
+		<img src='<c:url value="/resources/rawHoney1.jpg"></c:url>' class="img-responsive">
+	</div>
+</div>
 </body>
-</html>
+
+</+html>

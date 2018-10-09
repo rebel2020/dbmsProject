@@ -11,14 +11,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form method="post" action="add_record" modelAttribute="record">
-<table>
-<tr><td>ItemId:</td><td><input name="itemId"" type="text"/></td></tr>
-<tr><td>Quantity:</td><td><input name="quantity"" type="text"/></td></tr>
-<tr><td>Amount:</td><td><input name="amount"" type="text"/></td></tr>
-<!--  <tr><td>Date:</td><td><input name="date"" type="date"/></td></tr> -->
-</table>
-<input type="submit" value="add record">
+<div class="col-sm-offset-2 col-sm-8 panel panel-default">
+<c:if test="${error!=null }">
+<div class="alert" style="color:red">
+  ${error }
+</div>
+</c:if><form:form method="post" action="add_record" modelAttribute="record">
+<label><b>ItemId:</b></label>
+<input name="itemId"" type="text" class="form-control"/>
+<label><b>Quantity:</b></label>
+<input name="quantity"" type="text" class="form-control"/>
+<label><b>Amount:</b></label>
+<input name="amount"" type="text" class="form-control"/>
+<!--  Date:<input name="date"" type="date"/> -->
+<br>
+<input type="submit" value="add record" class="form-control btn btn-danger">
 </form:form>
+</div>
 </body>
 </html>

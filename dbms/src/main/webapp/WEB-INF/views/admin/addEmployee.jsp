@@ -10,23 +10,27 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class='col-sm-offset-3 col-sm-6 panel panel-danger'>
+<div class="panel-heading">
 <form:form action="" method="post" modelAttribute="employee">
 <table>
-<tr><td>Name:</td>
-<td><form:input path="name" type="text" required="required"/>
+<tr><lable><b>Name:</b></lable>
+<form:input path="name" type="text" required="required" class="form-control"/>
 <form:errors path="name"></form:errors>
-</td></tr>
-<tr><td>Working area:</td>
-<td><form:input path="workingArea" type="text"/>
-<form:errors path="workingArea"></form:errors></td></tr>
-<tr><td>Salary:</td>
-<td><form:input path="salary" type="int"/>
-<form:errors path="salary"></form:errors></td></tr>
-<tr><td>Contact no.:</td>
-<td><form:input path="contactNo" type="text" required="required"/>
-<form:errors path="contactNo"></form:errors></td></tr>
-<tr><td><input type="submit"></td></tr>
+</tr>
+<tr><lable><b>Working area:</b></lable>
+<form:input path="workingArea" type="text" class="form-control"/>
+<form:errors path="workingArea"></form:errors></tr>
+<tr><lable><b>Salary:</b></lable>
+<form:input path="salary" type="int" class="form-control"/>
+<form:errors path="salary"></form:errors></tr>
+<tr><lable><b>Contact no:</b></lable>
+<form:input path="contactNo" type="text" required="required" class="form-control"/>
+<form:errors path="contactNo"></form:errors></tr><br>
+<tr><input type="submit" value="Add employee" class="form-control btn btn-danger"></tr>
 </table>
 </form:form>
+</div>
+</div>
 </body>
 </html>

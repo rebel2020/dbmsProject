@@ -7,12 +7,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	img{width:10vw;height:30vh}
+    @media only screen and (max-width: 730px) {
+
+       img { width: 40vw;height:40vh;}
+
+    }
+</style>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <div class="panel panel-success col-sm-offset-1 col-sm-10">
 <div class="panel panel-heading">
+<div class="col-sm-3">
+	<img alt="" src="data:image/jpeg;base64,${image }">
+</div>
 <table>
 <tr><td>
 Name:</td>

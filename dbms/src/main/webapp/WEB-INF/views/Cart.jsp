@@ -12,7 +12,10 @@
 </head>
 <body>
 <c:if test="${empty list }">
-<h3>You don't have any item in your cart...</h3>
+<div class="panel col-sm-offset-2 col-sm-8 panel-default panel-heading">
+<center>	<h3>You don't have any item in your cart...</h3></center>
+<center><a href="items"><button style="width:80%" class="btn btn-success">Go to our product store</button></a></center>
+</div>
 </c:if>
 <c:if test="${not empty list }">
 <div class="">
@@ -26,6 +29,7 @@
 	<th>Quantity</th>
 	<th>Amount</th>
 	<th>Remove</th>
+	<th>Availability</th>
 </thead>
 </div>
 <tbody>
@@ -37,9 +41,17 @@
 	<td>${item.weight }</td>
 	<td>${item.pkgDate }</td>
 	<td>${item.price }</td>
-	<td>${item.quantity }</td>
-	<td>${item.price*item.quantity }</td>
+	<td>${item.cartQuantity }</td>
+	<td>${item.price*item.cartQuantity }</td>
 	<td><a href="/dbms/removefromcart/${item.itemId }"><button class="btn btn-danger btn-sm" >Remove</button></a></td>
+	<td>
+	<c:if test="${item.quantity>=item.cartQuantity }">
+		Available
+	</c:if>
+	<c:if test="${item.quantity<item.cartQuantity }">
+		Not available
+	</c:if>
+	</td>
 </tr>
 </c:forEach>
 </div>
@@ -48,10 +60,10 @@
 </div>
 <h4>Total Amount is:${price }</h4>
 <h4>Net price:${net_price }</h4>
-<form action="order/${net_price }">
+<form action="pay/${net_price }">
 <input type="hidden" value="${offerId }" name="offerId">
 <input type="text" value="${address }" name="address">
-<input type="submit" value="Place order">
+<input type="submit" value="Place order" class="btn btn-success btn-sm">
 </form>
 <form action="apply_offer">
 <select name="offerId" required="required">

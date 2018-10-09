@@ -75,11 +75,13 @@
 <div class="col-sm-12">
 <c:forEach items="${list }" var="item">
 <a href="item/${item.itemId }">
-<div class="panel panel-default col-sm-3" style="margin-right:2%;margin-top:2%;background-color:rgb(200,200,200);width:23vw;height:75%;overflow:hidden;text-overflow:ellipsis">
+<div class="panel panel-default col-sm-3" style="margin-right:1vw;margin-top:2%;background-color:rgb(200,200,200);width:22vw;overflow:hidden;text-overflow:ellipsis">
 	<center><div><img alt="" src="data:image/jpeg;base64,${item.forImage }" class="img-responsive" style="height:55vh;width:22vw"></div></center>
 	<div style="display:block;">
-	<center><div style="overflow:hidden;font-size:180%;height:70px">${item.name }(${item.weight }gm)</div></center>
-<center><h3>Price: ${item.price }.00 Rs</h3></center>
+	<center><div style="overflow:hidden;font-size:2vw;height:15vh">	
+		${item.name }(${item.weight }gm)
+	</div></center>
+<center><h3 style="overflow:hidden;font-size:2vw;height:15vh">Price: ${item.price }.00 Rs</h3></center>
 	
 	</div>
 </div>

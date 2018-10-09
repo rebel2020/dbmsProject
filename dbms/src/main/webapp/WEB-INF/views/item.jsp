@@ -9,6 +9,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	img{width:30vw}
+    @media only screen and (max-width: 700px) {
+
+       img { width: 60vw;}
+
+    }
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -16,10 +24,9 @@
 <div class="panel panel-success col-sm-offset-1 col-sm-10">
 <div >
 <div class="col-sm-6">
-	<img alt="" src="data:image/jpeg;base64,${image }" style="width:30vw">
+	<img alt="" src="data:image/jpeg;base64,${image }" style="">
 </div>
-
-<div class="col-sm-6">
+<div class="col-sm-6" style="margin-top:10vh;font-size:130%">
 <table>
 <tr><td>
 Name:</td>
@@ -28,7 +35,7 @@ Name:</td>
 <tr><td>Price:</td><td>${item.price }</td></tr>
 <tr><td>Date when packed:</td><td>${item.pkgDate }</td></tr>
 <tr><td>Description:</td>
-<td>${item.description }</td></tr>
+<td><div style="height:40px;font-size:16px">${item.description }</div></td></tr>
 <tr><td>Hurry up...Only ${item.quantity } items remaining</td></tr>
 <tr><td><form action="../addtocart/${item.itemId}">
 <input type="number" name="quantity" max="${item.quantity }" min="1" required>
@@ -41,9 +48,5 @@ Name:</td>
 <a href="../givefeedback/${item.itemId }">Give feedback</a>
 </div></div>
 </div>
-<%byte[] barr=((Item)request.getAttribute("item")).getPhoto().getBytes(1, (int)((Item)request.getAttribute("item")).getPhoto().length()); 
-	String photo=Base64.getEncoder().encodeToString(barr);
-	out.println("<img src=\"data:image/jpeg;base64,"+photo+"\" style=\"height:130vh\"></img>");
-%>
 </body>
 </html>

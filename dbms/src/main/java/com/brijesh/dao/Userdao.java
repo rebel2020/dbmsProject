@@ -21,4 +21,5 @@ public interface Userdao{
 	public void editProfile(User user,String userId) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException;
 	public void resetPassword(String userId,String pass);
 	public void changeProfilePic(String userId,InputStream is,byte[] barr) throws ClassNotFoundException, SQLException, IOException;
+	public void registerEmployee(User user);
 }    

@@ -19,6 +19,7 @@
 <div style="float:left;width:30%;margin-left:5%;background-color:rgb(200,200,200);margin-top:3%">
 User:
 ${feedback.userId }
+<br>
 Content:
 	<p>${feedback.content }</p>
 </div>

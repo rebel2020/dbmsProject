@@ -12,6 +12,7 @@ import com.brijesh.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +38,7 @@ public class OrderController {
 	Itemdao itemdao;
 	@Autowired
 	Employeedao employeedao;
+/*	@Transactional
 	@RequestMapping("order")
 	public String placeOrder(Model model,HttpServletRequest request)
 	{
@@ -54,23 +56,18 @@ public class OrderController {
 		while(itr.hasNext())
 		{
 			Cart cart=itr.next();
-//			System.out.println(cart.getItemName()+" "+cart.getQuantity());
-			orderdao.addToOrder(orderId, cart.getItemId(),cart.getQuantity());
-			int count=itemdao.getItem(cart.getItemId()).getQuantity();
-			count=count-cart.getQuantity();
-			if(count>=0)
-			itemdao.newCount(cart.getItemId(), count);
+			if(cart.getCartQuantity()>cart.getQuantity())
+				continue;
+			orderdao.addToOrder(orderId, cart.getItemId(),cart.getCartQuantity());
+			itemdao.newCount(cart.getItemId(), cart.getQuantity()-cart.getCartQuantity());
 			cartdao.removeFromCart(cart.getItemId(), userId);
 		}
 		return "redirect:/orderitems/"+orderId;
-//		List<OrderItem> list1=orderdao.getOrderItems(orderId);
-//		model.addAttribute("list1",list1);
-//		return "order";
-	}
+	}*/
+	@Transactional
 	@RequestMapping("order/{net_price}")
 	public String placeOfferOrder(Model model,HttpServletRequest request,@PathVariable(value="net_price") int net_price)
 	{
-		System.out.println(request.getParameter("offerId"));
 		String userId=request.getUserPrincipal().getName();
 		String date=LocalDate.now().toString();
 		String address=request.getParameter("address");
@@ -80,24 +77,21 @@ public class OrderController {
 		while(itr.hasNext())
 		{
 			Cart cart=itr.next();
-//			System.out.println(cart.getItemName()+" "+cart.getQuantity());
-			orderdao.addToOrder(orderId, cart.getItemId(),cart.getQuantity());
-			int count=itemdao.getItem(cart.getItemId()).getQuantity();
-			count=count-cart.getQuantity();
-			if(count>=0)
-			itemdao.newCount(cart.getItemId(), count);
+			if(cart.getQuantity()<cart.getCartQuantity())
+				continue;
+			orderdao.addToOrder(orderId, cart.getItemId(),cart.getCartQuantity());
+			itemdao.newCount(cart.getItemId(), cart.getQuantity()-cart.getCartQuantity());
 			cartdao.removeFromCart(cart.getItemId(), userId);
 		}
 		return "redirect:/orderitems/"+orderId;
-//		List<OrderItem> list1=orderdao.getOrderItems(orderId);
-//		model.addAttribute("list1",list1);
-//		return "order";
 	}
 	@RequestMapping("admin/orders")
 	public String getAllOrders(Model model)
 	{
 		List<Order> list=orderdao.getAllOrders();
 		model.addAttribute("list",list);
+		List<Employee> list1=employeedao.getAllEmployee();
+		model.addAttribute("list1",list1);
 		return "admin/orders";
 	}
 	@RequestMapping("orders")
@@ -133,8 +127,6 @@ public class OrderController {
 			item.setForImage(Base64.getEncoder().encodeToString(item.getPhoto().getBytes(1, (int) item.getPhoto().length())));
 		}
 		model.addAttribute("list",list);
-		List<Employee> employees=employeedao.getAllEmployee();
-		model.addAttribute("employees",employees);
 		return "admin/order";
 	}
 	@RequestMapping(value="admin/assign_employee/{orderId}",method=RequestMethod.POST)
@@ -156,5 +148,11 @@ public class OrderController {
 	{
 		orderdao.orderConfirmation(request.getUserPrincipal().getName(), orderId);
 		return "redirect:/orders";
+	}
+	@RequestMapping("pay/{amount}")
+	public String pay(Model model,@PathVariable(value="amount") int amount)
+	{
+		model.addAttribute("amt",1);
+		return "payment";
 	}
 }

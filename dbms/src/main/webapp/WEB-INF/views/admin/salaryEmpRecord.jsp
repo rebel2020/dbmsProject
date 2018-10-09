@@ -10,15 +10,32 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<a href="../add_record/${empId }">Add new payment record</a><br><br><br>
 <body>
+<div class="panel" style="margin-left:3%;margin-right:3%">
+<form action="../add_record/${empId }">
+<input type="submit" class="form-controll btn btn-danger" value="Add new payment record" style="margin-top:1%">
+</form>
+<div>
 <c:forEach items="${list }" var="record">
+<div class="panel panel-success col-sm-3">
+	<div class="panel-heading">
+	<label style="margin-left:0%;font-size:150%"><b>${record.name }</b></label>
+		<label style="margin-left:40%;font-size:150%"><b>${record.month }/${record.year }</b></label>
+	</div>
+	<div class="panel-body">
+	</div>
 <table>
-<tr><td>Employee Id:</td><td>${record.empId }</td></tr>
-<tr><td>Salary:</td><td>${record.salary}</td></tr>
-<tr><td>Date:</td><td>${record.month }/${record.year }</td></tr>
+<tr><td><label>EmpId:</label></td>
+	<td><label>   ${record.empId }</label><br></td></tr>
+<tr><td><label>Amount:</label></td>
+<td>	<label>   ${record.paid }</label><br></td></tr>
+<tr><td><label>Salary:</label></td>
+<td>	<label>   ${record.salary }</label><br></td></tr>
 </table>
 <br><br>
+</div>
 </c:forEach>
+</div>
 </body>
+</div>
 </html>

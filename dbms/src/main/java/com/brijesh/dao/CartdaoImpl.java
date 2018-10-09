@@ -22,8 +22,8 @@ public class CartdaoImpl implements Cartdao{
 	@Autowired
 	Itemdao itemdao;
 	public void addToCart(Cart cart) {
-		String sql="insert into CART set userId=?,itemId=?,quantity=?";
-		Object[] object= {cart.getUserId(),cart.getItemId(),cart.getQuantity()};
+		String sql="insert into CART set userId=?,itemId=?,cartQuantity=?";
+		Object[] object= {cart.getUserId(),cart.getItemId(),cart.getCartQuantity()};
 		jdbcTemplate.update(sql,object);
 	}
 	public void removeFromCart(int itemId,String userId) {
@@ -33,6 +33,7 @@ public class CartdaoImpl implements Cartdao{
 	}
 	public List<Cart> getCartItems(String userId)
 	{
+//		String sql1="select CART.itemId,name,CART.quantity as quantity,ITEMS.quantity as availQuantity,pkgDate,price,weight from ITEMS,CART where userId='"+userId+"' and CART.itemId=ITEMS.itemId";
 		String sql="select * from ITEMS,CART where userId=\""+userId+"\" and ITEMS.itemId=CART.itemId";
 		List<Cart> list=(List<Cart>)jdbcTemplate.query(sql, new BeanPropertyRowMapper(Cart.class));
 		return list;
@@ -57,15 +58,16 @@ public class CartdaoImpl implements Cartdao{
 
 	public int getPrice(String userId) {
 		
-		String sql="select * from CART  where CART.userId=\""+userId+"\"";
+		String sql="select * from CART,ITEMS  where CART.userId=\""+userId+"\" and ITEMS.itemId = CART.itemId and quantity>=cartQuantity";
 		List<Cart> list=(List<Cart>)jdbcTemplate.query(sql, new BeanPropertyRowMapper(Cart.class));
 		Iterator<Cart> itr=list.iterator();
 		int amount=0;
 		while(itr.hasNext())
 		{
 			Cart cart=itr.next();
-			amount+=cart.getQuantity()*itemdao.getItem(cart.getItemId()).getPrice();
+			amount+=cart.getCartQuantity()*itemdao.getItem(cart.getItemId()).getPrice();
 		}
+		System.out.println(amount);
 		return amount;
 	}
 	public void placeOrder(int cartId) {

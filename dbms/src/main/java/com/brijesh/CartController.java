@@ -44,7 +44,7 @@ public class CartController {
 		cart.setItemId(itemId);
 		cart.setUserId(userId);
 //		System.out.println(Integer.parseInt(request.getParameter("quantity")));
-		cart.setQuantity(Integer.parseInt(request.getParameter("quantity")));
+		cart.setCartQuantity(Integer.parseInt(request.getParameter("quantity")));
 		cart.setName(itemdao.getItem(itemId).getName());
 		cartdao.addToCart(cart);
 		return "redirect:/cart";

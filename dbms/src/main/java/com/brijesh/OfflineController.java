@@ -2,6 +2,7 @@ package com.brijesh;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +26,20 @@ public class OfflineController {
 	Itemdao itemdao;
 	
 	@RequestMapping(value="offline/add_record",method=RequestMethod.GET)
-	public String addrecord(Model model)
+	public String addrecord(Model model,HttpServletRequest request)
 	{
 		OfflineRecord record=new OfflineRecord();
 		model.addAttribute("record",record);
 		return "admin/addRecord";
 	}
 	@RequestMapping(value="offline/add_record",method=RequestMethod.POST)
-	public String addrecord(@Valid @ModelAttribute("record") OfflineRecord record,BindingResult result)
+	public String addrecord(@Valid @ModelAttribute("record") OfflineRecord record,BindingResult result,Model model)
 	{
-		if(result.hasErrors()|| itemdao.isPresent(record.getItemId())==false || record.getAmount()!=record.getQuantity()*itemdao.getItem(record.getItemId()).getPrice() )
+		if(result.hasErrors() || itemdao.getItem(record.getItemId())==null ||record.getAmount()!=record.getQuantity()*itemdao.getItem(record.getItemId()).getPrice() )
 		{
-			return "redirect:/offline/add_record";
+			model.addAttribute("error","Incorrect details..fill it properly");
+			model.addAttribute("order",new OfflineRecord());
+			return "admin/addRecord";
 		}
 		else
 		{

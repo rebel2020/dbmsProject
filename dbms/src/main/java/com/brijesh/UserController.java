@@ -17,6 +17,7 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -45,6 +46,7 @@ public class UserController {
 		model.addAttribute("list",contactdao.getContacts(request.getUserPrincipal().getName()));
 		return "contacts";
 	}
+	
 	@RequestMapping(value="add_contact",method=RequestMethod.GET)
 	public String addContact(Model model)
 	{
@@ -127,5 +129,10 @@ public class UserController {
 		userdao.changeProfilePic(request.getUserPrincipal().getName(), is, barr);
 		return "redirect:/profile";
 	}
-
+/*	@RequestMapping("admin/switch_user_status/{userId}")
+	public String switchStatus(@PathVariable(value="userId") String userId,Model model)
+	{
+		userdao.switchStatus(userId);
+		return "redirect:/admin/users";
+	}*/
 }

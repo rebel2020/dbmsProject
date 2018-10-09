@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.brijesh.model.Order;
 import com.brijesh.model.UserRole;
@@ -24,13 +25,13 @@ public class OrderdaoImpl implements Orderdao{
 		List<Order> list=jdbctemplate.query(sql, new BeanPropertyRowMapper(Order.class));
 		return list;
 	}
-
 	public List<OrderItem> getOrderItems(int orderId) {
 		String sql="select * from ITEMS,ORDER_ITEM,ITEM_IMAGE where orderId="+orderId+" and ITEMS.itemId=ORDER_ITEM.itemId and ITEMS.itemId=ITEM_IMAGE.itemId";
 		return jdbctemplate.query(sql, new BeanPropertyRowMapper(OrderItem.class));
 	}
-
 	public int placeOrder(String userId,int amount,int netAmount,int offerId,String address,String date) {
+		String s="insert into temp set name=10";
+		jdbctemplate.update(s);
 		String sql="select max(orderId) from ORDERS";
 		Order maxOrder=jdbctemplate.query(sql, new ResultSetExtractor<Order>() {
 			public Order extractData(ResultSet rs) throws SQLException

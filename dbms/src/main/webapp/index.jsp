@@ -13,16 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Hello World
-<% 
-Principal principal=request.getUserPrincipal();
-if(principal==null)
-{
-out.println("<form action=\"login\"><input type=\"submit\" value=\"Login\"><form>");
+<%
 response.sendRedirect("login");
-return;
-}
-%>
-<a href="<c:url value="/j_spring_security_logout" />"> Logout</a>
-</body>
-</html>
+return;%>

@@ -12,13 +12,23 @@
 </head>
 <body>
 <c:forEach items="${list }" var="record">
+<div class="panel panel-success col-sm-3">
+	<div class="panel-heading">
+	<label style="margin-left:0%;font-size:100%"><b>${record.name }</b></label>
+		<label style="margin-left:40%;font-size:150%"><b>${record.month }/${record.year }</b></label>
+	</div>
+	<div class="panel-body">
+	</div>
 <table>
-<tr><td>Employee Id:</td><td>${record.empId }</td></tr>
-<tr><td>Salary:</td><td>${record.salary}</td></tr>
-<tr><td>Date:</td><td>${record.month }/${record.year }</td></tr>
+<tr><td><label>EmpId:</label></td>
+	<td><label>   ${record.empId }</label><br></td></tr>
+<tr><td><label>Amount:</label></td>
+<td>	<label>   ${record.paid }</label><br></td></tr>
+<tr><td><label>Salary:</label></td>	
+<td>	<label>   ${record.salary }</label><br></td></tr>
 </table>
 <br><br>
-
+</div>
 </c:forEach>
 </body>
 </html>

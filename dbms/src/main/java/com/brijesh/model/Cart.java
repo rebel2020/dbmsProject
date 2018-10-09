@@ -14,6 +14,20 @@ public class Cart {
 	String pkgDate;
 	int price;
 	int weight;
+	int availQuantity;
+	int cartQuantity;
+	public int getCartQuantity() {
+		return cartQuantity;
+	}
+	public void setCartQuantity(int cartQuantity) {
+		this.cartQuantity = cartQuantity;
+	}
+	public int getAvailQuantity() {
+		return availQuantity;
+	}
+	public void setAvailQuantity(int availQuantity) {
+		this.availQuantity = availQuantity;
+	}
 	public String getPkgDate() {
 		return pkgDate;
 	}

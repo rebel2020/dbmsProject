@@ -25,12 +25,12 @@ public class SalarydaoImpl implements Salarydao{
 	}
 
 	public List<SalaryRecord> getAllRecords() {
-		String sql="select * from SALARYRECORD order by year, month desc";
+		String sql="select * from SALARYRECORD natural join EMPLOYEES  order by year, month desc";
 		List<SalaryRecord> list=jdbcTemplate.query(sql, new BeanPropertyRowMapper(SalaryRecord.class));
 		return list;
 	}
 	public List<SalaryRecord> getRecords(int empId) {
-		String sql="select * from SALARYRECORD where empId="+empId;
+		String sql="select * from SALARYRECORD natural join EMPLOYEES where empId="+empId;
 		return jdbcTemplate.query(sql,new BeanPropertyRowMapper(SalaryRecord.class));
 	}
 

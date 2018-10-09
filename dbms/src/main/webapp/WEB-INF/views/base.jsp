@@ -74,8 +74,11 @@ div.sticky {
 		<div class="container-fluid">
 			<ul class="nav navbar-nav" style="display:inline">
 				<li style="top:-5px;"><a href="/dbms/home"><span class="glyphicon glyphicon-home">Home</span></a></li>
+				<li ><a href="/dbms/items"><span>Products</span></a></li>
+			<c:if test="${pageContext.request.userPrincipal.name != null}">
 				<li style="top:-5px;"><a href="/dbms/cart"><span class="glyphicon glyphicon-shopping-cart">Mycart</span></a></li>
 				<li ><a href="/dbms/orders"><span>Orders</span></a></li>
+				</c:if>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -92,7 +95,7 @@ div.sticky {
 	        </li>
 			</c:if>
 			</ul>
-			<ul class="nav navbar-nav navbar-right" style="margin-right:10%">
+			<ul class="nav navbar-nav navbar-right" style="margin-right:0%">
 				<li "><a href="/dbms/aboutus"><span>About us</span></a></li>
 			</ul>
 

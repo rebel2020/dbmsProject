@@ -11,15 +11,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="add_record">Add new record</a><br><br><br>
+<a href="add_record"><button class="btn btn-success" style="width:100%">Add new record</button></a>
 <c:forEach items="${list }" var="record">
+<div class="panel panel-default col-sm-2" style="margin-left:2vw;margin-top:2vh;background-color:rgb(200,200,200)">
 <table>
 <tr><td>ItemId:</td><td>${record.itemId }</td></tr>
 <tr><td>Quantity:</td><td>${record.quantity}</td></tr>
 <tr><td>Amount:</td><td>${record.amount }</td></tr>
 <tr><td>Date:</td><td>${record.date }</td></tr>
 </table>
-<br><br>
+	
+</div>
 </c:forEach>
 </body>
 </html>
