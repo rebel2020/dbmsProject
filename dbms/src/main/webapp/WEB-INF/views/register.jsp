@@ -35,7 +35,6 @@
 		<form:hidden path="DOB" value="${DOB }"/>
 		<form:input path="address" type="text" placeholder="address" class="form-control"/> <!-- bind to user.name-->
 		<form:errors path="address" />
-		
 			
 			<input type="submit" value="Register" style="width:100%;color:green;"/>
 					

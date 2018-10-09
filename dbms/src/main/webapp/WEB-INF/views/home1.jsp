@@ -30,23 +30,23 @@
 <div class="" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><button type="button" class="btn btn-default btn-sm navbar-btn">
-          <a href="/dbms/home"><span class="glyphicon glyphicon-home"></span> Home</a>
+          <a href="${pageContext.request.contextPath}/home"><span class="glyphicon glyphicon-home"></span> Home</a>
         </button></li> 
       </ul>
 		<ul class="nav navbar-nav">
             	<c:if test="${pageContext.request.userPrincipal.name != null}">
                 	<li><a href="#">Dashboard</a></li>
-                	<li><a href="/dbms/orders">Orders</a></li>
+                	<li><a href="${pageContext.request.contextPath}/orders">Orders</a></li>
             	</c:if>
             	<c:if test="${pageContext.request.userPrincipal.name == null}">
             		<li><a href="<c:url value="home" />">Home</a></li>
                 </c:if>
-                <li><a href="/dbms/aboutus">About Us</a></li>
-                <li><a href="/dbms/items">Store</a></li>
+                <li><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
+                <li><a href="${pageContext.request.contextPath}/items">Store</a></li>
             </ul>
        <c:if test="${pageContext.request.userPrincipal.name != null}">
       <ul class="nav navbar-nav">
-      	<li><button class="btn btn-default btn-sm navbar-btn"><a href="/dbms/cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a></button></li>
+      	<li><button class="btn btn-default btn-sm navbar-btn"><a href="${pageContext.request.contextPath}/cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a></button></li>
       </ul>
       </c:if>
       <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -54,9 +54,9 @@
      	<li class="dropdown dropdown-right">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span></a>
           <ul class="dropdown-menu">
-               <li><a href="/dbms/profile">My profile</a></li>
+               <li><a href="${pageContext.request.contextPath}/profile">My profile</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="/dbms/j_spring_security_logout">Logout</a></li>
+            <li><a href="${pageContext.request.contextPath}/j_spring_security_logout">Logout</a></li>
           </ul>
         </li>
         </ul>
@@ -66,8 +66,8 @@
      	<li class="dropdown dropdown-right">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="/dbms/login">Login</a></li>
-               <li><a href="/dbms/register">Register</a></li>
+            <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
+               <li><a href="${pageContext.request.contextPath}/register">Register</a></li>
           </ul>
         </li>
         </ul>

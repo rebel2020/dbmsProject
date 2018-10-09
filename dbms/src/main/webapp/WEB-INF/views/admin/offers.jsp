@@ -26,17 +26,17 @@
 		<td>Flat ${offer.percentageOff } %</td>
 		<td>
 		<c:if test="${offer.enabled }">
-		<a href="/dbms/admin/offer/switch_status/${offer.offerId }"><button class="btn btn-default btn-danger">Disable</button></a>
+		<a href="${pageContext.request.contextPath}/admin/offer/switch_status/${offer.offerId }"><button class="btn btn-default btn-danger">Disable</button></a>
 		</c:if>
 		<c:if test="${not offer.enabled }">
-		<a href="/dbms/admin/offer/switch_status/${offer.offerId }"><button class="btn btn-default btn-success">Enable</button></a>
+		<a href="${pageContext.request.contextPath}/admin/offer/switch_status/${offer.offerId }"><button class="btn btn-default btn-success">Enable</button></a>
 		</c:if>
 		</td>
 	</tr>	
 	</c:forEach>
 </tbody>
 </table>
-<form action="/dbms/admin/add_offer">
+<form action="${pageContext.request.contextPath}/admin/add_offer">
 <input class="form-control btn btn-success" type="submit" value="Add new offer">
 </form>
 

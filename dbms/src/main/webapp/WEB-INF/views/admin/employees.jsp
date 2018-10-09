@@ -36,8 +36,8 @@
 	<td>${item.salary }</td>
 	<td>${item.contactNo }</td>
 	<td>${item.joiningDate }</td>
-	<td><a href="/dbms/admin/assigned_orders/${item.empId }"><button class="btn btn-danger btn-sm" >view orders</button></a></td>
-	<td><a href="/dbms/salary/employee_records/${item.empId }"><button class="btn btn-danger btn-sm" >See</button></a></td>
+	<td><a href="${pageContext.request.contextPath}/admin/assigned_orders/${item.empId }"><button class="btn btn-danger btn-sm" >view orders</button></a></td>
+	<td><a href="${pageContext.request.contextPath}/salary/employee_records/${item.empId }"><button class="btn btn-danger btn-sm" >See</button></a></td>
 	<td><a href="#"><button class="btn btn-danger btn-sm" >Remove</button></a></td>
 </tr>
 </c:forEach>

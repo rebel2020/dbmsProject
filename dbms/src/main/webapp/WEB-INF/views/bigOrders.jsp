@@ -72,7 +72,7 @@
 				<td>
 				<c:if test="${order.isConfirmed }">
 				<c:if test="${order.status%2==0 }">
-					<a href="/dbms/bigorder/delivered/${order.orderId}"><button class="btn btn-success">Mark delivered</button></a>
+					<a href="${pageContext.request.contextPath}/bigorder/delivered/${order.orderId}"><button class="btn btn-success">Mark delivered</button></a>
 				</c:if>
 				<c:if test="${order.status%2==1 }">
 					<c:if test="${order.status==11 }">

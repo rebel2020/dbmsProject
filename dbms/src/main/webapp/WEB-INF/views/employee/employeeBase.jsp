@@ -24,15 +24,15 @@
 	<div class="container-fluid">
 		<div class="nav navbar-nav navbar-header">
 			<ul class="nav navbar-nav">
-				<li><a href="/dbms/employee">Home</a></li>
-				<li><a href="/dbms/employee/assigned_orders">Orders</a></li>
-				<li><a href="/dbms/employee/profile">Profile</a></li>
+				<li><a href="${pageContext.request.contextPath}/employee">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/employee/assigned_orders">Orders</a></li>
+				<li><a href="${pageContext.request.contextPath}/employee/profile">Profile</a></li>
 			
 			</ul>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
 			<li>
-				<a href="/dbms/j_spring_security_logout"><span class="glyphicon glyphicon-log-out">Logout</span></a>
+				<a href="${pageContext.request.contextPath}/j_spring_security_logout"><span class="glyphicon glyphicon-log-out">Logout</span></a>
 			</li>
 		</ul>		
 	</div>

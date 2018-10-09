@@ -31,8 +31,8 @@
 			<td>${user.contact }</td>
 			<td><a href="view_details/${user.username }"><button class="btn btn-sm">View</button></a></td>
 			<td>
-			<c:if test="${user.enabled }"><a href="/dbms/admin/switch_status/${user.username }"><button class="btn btn-danger">Disable</button></a></c:if>
-			<c:if test="${not user.enabled }"><a href="/dbms/admin/switch_status/${user.username }"><button class="btn btn-success">Enable</button></a></c:if>
+			<c:if test="${user.enabled }"><a href="${pageContext.request.contextPath}/admin/switch_status/${user.username }"><button class="btn btn-danger">Disable</button></a></c:if>
+			<c:if test="${not user.enabled }"><a href="${pageContext.request.contextPath}/admin/switch_status/${user.username }"><button class="btn btn-success">Enable</button></a></c:if>
 			</td>
 		
 		</tr>

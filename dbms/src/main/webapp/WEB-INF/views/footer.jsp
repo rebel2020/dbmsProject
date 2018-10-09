@@ -22,9 +22,9 @@
 	<div class="panel panel-danger col-sm-12">
 		<div class="col-sm-2" >
 			<h4 style="matgin-left:3%">Quick links</h4>
-			<label ><a href="/dbms/home">Home</a></label><br>
+			<label ><a href="${pageContext.request.contextPath}/home">Home</a></label><br>
 			<label ><a href="#">About us</a></label><br>
-			<label ><a href="/dbms/items">Get started</a></label><br>
+			<label ><a href="${pageContext.request.contextPath}/items">Get started</a></label><br>
 		</div>
 		<div class="col-sm-3" style="float:right" >
 			<h4 >Contacts</h4>

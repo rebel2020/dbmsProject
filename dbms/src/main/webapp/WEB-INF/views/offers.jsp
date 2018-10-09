@@ -16,7 +16,7 @@
 <tr><td>Id:</td><td>${offer.offerId }</td></tr><tr><td>Name:</td>
 <td>${offer.offerName }</td></tr><tr><td>Percentage Off:</td><td>${offer.percentageOff }</td></tr>
 </table>
-<form action="/dbms/admin/offer/switch_status/${offer.offerId }">
+<form action="${pageContext.request.contextPath}/admin/offer/switch_status/${offer.offerId }">
 <c:if test="${offer.enabled }">Active now</c:if><c:if test="${not offer.enabled }">Not active</c:if><input type="submit" value="Switch status">
 </form>
 

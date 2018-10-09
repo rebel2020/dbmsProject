@@ -25,8 +25,8 @@
 
 
 <div class="col-sm-offset-1 col-sm-10" style="font-size:200%">
-	<a href="/dbms/bigorders" style="float:left">See Bulk order history</a>
-	<a href="/dbms/bigorder/placeorder" style="float:right">Buy raw honey in bulk</a>
+	<a href="${pageContext.request.contextPath}/bigorders" style="float:left">See Bulk order history</a>
+	<a href="${pageContext.request.contextPath}/bigorder/placeorder" style="float:right">Buy raw honey in bulk</a>
 </div>
 </body>
 </html>

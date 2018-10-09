@@ -45,7 +45,7 @@
 					<td>Order is confirmed</td>
 					</c:if>
 					<c:if test="${not order.isConfirmed }">
-					<td><a href="/dbms/admin/bigorder/confirm/${order.orderId }"><button>Confirm order</button></a></td>
+					<td><a href="${pageContext.request.contextPath}/admin/bigorder/confirm/${order.orderId }"><button>Confirm order</button></a></td>
 					</c:if>
 					<c:if test="${order.price==0 }">
 					<form action="set_price/${order.orderId }">
@@ -58,11 +58,11 @@
 						<td>${order.price }</td>
 						<td>
 						<c:if test="${not order.isConfirmed }">
-						<a href="/dbms/admin/edit_price/${order.orderId }"><button class="btn btn-sm btn-danger">Edit price</button></a>
+						<a href="${pageContext.request.contextPath}/admin/edit_price/${order.orderId }"><button class="btn btn-sm btn-danger">Edit price</button></a>
 						</c:if>
 						<c:if test="${ order.isConfirmed }">
 						<c:if test="${order.status==0 ||order.status==1}">
-						<a href="/dbms/admin/bigorder/delivered/${order.orderId }"><button class="btn btn-sm btn-danger">Mark delivered</button></a>
+						<a href="${pageContext.request.contextPath}/admin/bigorder/delivered/${order.orderId }"><button class="btn btn-sm btn-danger">Mark delivered</button></a>
 						</c:if>
 						<c:if test="${order.status==11 ||order.status==10 }">
 							Delivered on ${order.date }

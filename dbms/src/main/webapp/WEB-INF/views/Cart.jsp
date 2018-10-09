@@ -43,7 +43,7 @@
 	<td>${item.price }</td>
 	<td>${item.cartQuantity }</td>
 	<td>${item.price*item.cartQuantity }</td>
-	<td><a href="/dbms/removefromcart/${item.itemId }"><button class="btn btn-danger btn-sm" >Remove</button></a></td>
+	<td><a href="${pageContext.request.contextPath}/removefromcart/${item.itemId }"><button class="btn btn-danger btn-sm" >Remove</button></a></td>
 	<td>
 	<c:if test="${item.quantity>=item.cartQuantity }">
 		Available

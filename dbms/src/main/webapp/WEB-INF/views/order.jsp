@@ -19,7 +19,7 @@
 		<img alt="" src="data:image/jpeg;base64,${item.forImage }" class="img-responsive" style="height:40vh">
 	</div>
 	<div class="col-sm-7">
-		<h1>${item.name }</h1>
+		<a href="../item/${item.itemId }"><h1>${item.name }</h1></a>
 		<h4>Quantity:${item.quantity }</h4>
 		<h4>Pkg Date:${item.pkgDate }</h4>
 	</div>

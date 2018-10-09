@@ -13,7 +13,7 @@
 </div>
 <div>
 	<label style="color:red"><b>${error }</b></label>
-	<form:form method="post" modelAttribute="user" action="/dbms/register/employee">
+	<form:form method="post" modelAttribute="user" action="${pageContext.request.contextPath}/register/employee">
 		<form:input path="username" type="number" required="required" class="form-control" placeholder="Username" minlength="5"/> <!-- bind to user.name-->
 		<form:errors path="username" />
 		

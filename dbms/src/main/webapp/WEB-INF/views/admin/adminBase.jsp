@@ -73,12 +73,12 @@ div.sticky {
 		<nav style="background-color:black;font-size:150%" >
 		<div class="container-fluid">
 			<ul class="nav navbar-nav" style="display:inline">
-				<li style="top:-5px;"><a href="/dbms/admin"><span class="glyphicon glyphicon-home">Home</span></a></li>
-				<li ><a href="/dbms/admin/items"><span>Products</span></a></li>
-				<li ><a href="/dbms/admin/orders"><span>Orders</span></a></li>
+				<li style="top:-5px;"><a href="${pageContext.request.contextPath}/admin"><span class="glyphicon glyphicon-home">Home</span></a></li>
+				<li ><a href="${pageContext.request.contextPath}/admin/items"><span>Products</span></a></li>
+				<li ><a href="${pageContext.request.contextPath}/admin/orders"><span>Orders</span></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li style="top:-5px;"><a href="/dbms/j_spring_security_logout"><span class="glyphicon glyphicon-log-out">Logout</span></a></li>
+				<li style="top:-5px;"><a href="${pageContext.request.contextPath}/j_spring_security_logout"><span class="glyphicon glyphicon-log-out">Logout</span></a></li>
 			</ul>
 		</div>
 	</nav>	
